@@ -1,0 +1,325 @@
+.nav-logo {
+  max-width: 250px;
+}
+.navbar {
+  border-bottom: 5px solid #ed296e;
+}
+.navbar h3,
+.event-title {
+  color: #5a595c;
+}
+.navbar h3 {
+  text-transform: uppercase;
+}
+.policyNavbar {
+  border-bottom: 5px solid #faac32;
+}
+
+.mobile-button  {
+  color: #1d4780;
+  background-color: transparent;
+  border: none;
+}
+.mobile-button i {
+  font-size: 50px;
+}
+
+.user-select {
+  background-color: #ed296e;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  appearance: none;
+  background-image: url("/public/img/arrow.png");
+  background-position: right;
+  width: 150px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+.dropdownMenu {
+  width: 55%;
+  background: #ed296e;
+  color: white;
+  overflow: hidden;
+  z-index: 100;
+  height: 40px;
+}
+.ipaUser {
+  padding: 7px;
+}
+.dropdownMenu img {
+  padding: 7px;
+  border-left: 2px solid white;
+}
+
+.dropdownMenu ul {
+  background-color: #ed296e;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dropdownMenu ul li {
+  padding: 7px;
+  border: 1px solid white;
+}
+.dropdownMenu a {
+  color: white;
+  text-decoration: none;
+}
+.dropdownMenu a:hover {
+  color: white;
+}
+.dropdownMenu ul li:hover {
+  background-color: #b3164d;
+}
+.dropdownMenu:hover {
+  overflow: visible;
+}
+.user-select:focus {
+  outline: none;
+}
+
+.login-form-input {
+  width: 65% !important;
+  margin-left: 30px;
+}
+.login-save-button {
+  color: white !important;
+  width: 150px !important;
+  margin: 0 auto;
+}
+.place-card {
+  width: 80% !important;
+}
+.place-input {
+  margin: 0 auto;
+}
+.date-card {
+  margin: 0 auto !important;
+}
+.date-yellow-box,
+.date-green-box,
+.date-blue-box,
+.date-pink-box {
+  color: white;
+  margin-right: 30px;
+  padding: 20px 25px;
+  border-radius: 35px;
+}
+.date-yellow-box button,
+.date-green-box button,
+.date-blue-box button,
+.date-pink-box button,
+.policyButton button {
+  background-color: white;
+  border: none;
+  font-weight: 600;
+  width: 120px;
+}
+.date-yellow-box {
+  background-color: #faac32;
+}
+.date-green-box {
+  background-color: #2ab35b;
+}
+.date-blue-box {
+  background-color: #009cd8;
+}
+.date-pink-box {
+  background-color: #ed296e;
+}
+.PUbuttons .PUpdf {
+  background-color: #ed296e !important;
+}
+.PUbuttons .PUexcel {
+  background-color: #2ebcbb !important;
+}
+.PUexcel,
+.PUpdf {
+  border: none !important;
+  padding: 7px 30px;
+  color: white;
+  border-radius: 6px;
+}
+
+.date-yellow-box button {
+  color: #faac32;
+}
+.date-green-box button {
+  color: #2ab35b;
+}
+.date-blue-box button {
+  color: #009cd8;
+}
+.date-pink-box button {
+  color: #ed296e;
+}
+.policy-info {
+  color: white;
+  background-color: #faac32;
+  padding: 20px 20px;
+  border-radius: 20px;
+  margin: 0 auto;
+}
+.policy-info p {
+  margin: 0;
+}
+.policy-check {
+  margin-right: 50px;
+}
+.userListBox img {
+  height: 80px;
+}
+.userList p {
+  color: #5a595c;
+}
+.ULnumber {
+  font-size: 35px;
+  font-weight: 700;
+  margin-right: 30px;
+}
+.userList .Ulnumber1 {
+  color: #2ebcbb;
+}
+.userList .Ulnumber2 {
+  color: #009cd8;
+}
+.userList .Ulnumber3 {
+  color: #ed296e;
+}
+.ULdesc {
+  font-size: 18px;
+  margin-left: 30px;
+}
+.ULimg {
+  height: 50px;
+}
+.table > :not(:first-child) {
+  border-top: 0px solid currentColor !important;
+}
+.PUimg img {
+  width: 40px;
+  margin-right: 20px;
+}
+.PUtext {
+  font-size: 18px;
+  color: #5a595c;
+  font-weight: 500;
+  margin: 0;
+}
+.PUbuttons button {
+  margin: 0px 15px;
+}
+.PUtitle {
+  background-color: #f37732;
+  color: white;
+}
+.tableTitle tr th {
+  background-color: #009cd8;
+  color: white;
+  text-transform: uppercase;
+}
+.table td button {
+  width: 50%;
+}
+
+.tableIcon span {
+  color: #009cd8;
+}
+.beforeLink,
+.afterLink a {
+  text-decoration: none;
+}
+.beforeLink {
+  margin-right: 20px;
+}
+
+.afterLink {
+  margin-left: 20px;
+}
+
+.dateIcon {
+  margin-right: 10px;
+}
+
+.policyForm {
+  margin: 0 auto;
+}
+.policyButton button {
+  background-color: #2ebcbb;
+}
+.policyText {
+  color: #5a595c;
+}
+.table > :not(caption) > * > * {
+  padding: 5px !important;
+}
+
+.heading {
+  text-align: right;
+  /* media queries */
+
+  @media (max-width: 400px) {
+    text-align: left;
+  }
+}
+
+@media (max-width: 760px) {
+  .dropdownMenu {
+    display: none;
+  }
+  .navbar {
+    flex: row;
+    flex-direction: column;
+  }
+}
+
+.verification-button a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+}
+.verification-button a:hover {
+  color: white;
+}
+.none-border-r {
+  border-right: 0 !important;
+}
+.none-border-l {
+  border-left: 0 !important;
+}
+
+.modal-button {
+  background-color: #b8b1b1;
+}
+.modal-button:focus {
+  outline: none !important;
+}
+.btn-primary {
+  color: #fff;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+.modal-content {
+  background-color: #1d4780 !important;
+  color: white;
+  padding: 30px;
+  position: relative;
+}
+.modal-title {
+  color: #fdc302;
+}
+
+.modalClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  font-size: 30px !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+.tableModal .modal-content{
+  background-color: #2ab35b !important;
+}
