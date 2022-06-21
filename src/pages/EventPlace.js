@@ -1,4 +1,7 @@
 import React from "react";
+import { useState } from "react";
+import { connect } from "react-redux";
+import { etkinlikEkle } from "../actions/action";
 import {
   Row,
   Col,
@@ -12,23 +15,37 @@ import {
 import { FaEdit } from "react-icons/fa";
 import Menu from "../compenents/Navbar";
 
-const EventPlace = () => {
+const INITIAL_STATE = [{ name: "Etkinlik Adı" }];
+
+const EventPlace = (props) => {
+  const [text, setText] = useState("");
   return (
     <Container>
       <Row>
         <Menu title="Etkinlik Alanı Tanımlama" />
         <Form>
           <Form.Group className="mt-5 mb-3  " controlId="formBasicEmail">
-            <h5 className="event-title text-center mb-3">Etkinlik Alanı Tanımlama</h5>
+            <h5 className="event-title text-center mb-3">
+              Etkinlik Alanı Tanımlama
+            </h5>
             <Form.Control
               className="place-input"
               style={{ width: "60%" }}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
               placeholder="Etkinlik alanı giriniz"
               type="text"
             />
           </Form.Group>
         </Form>
-        <Button className="login-save-button mb-4 mt-3" variant="info">
+        <Button
+          onClick={() => {
+            setText("");
+            props.etkinlikEkle(text);
+          }}
+          className="login-save-button mb-4 mt-3"
+          variant="info"
+        >
           Kaydet
         </Button>
 
@@ -44,7 +61,9 @@ const EventPlace = () => {
             <tbody>
               <tr>
                 <td>1</td>
-                <td>Hangar</td>
+                <td >
+                  Hangar
+                </td>
                 <td className="tableIcon">
                   <span>
                     <FaEdit />
@@ -113,4 +132,12 @@ const EventPlace = () => {
   );
 };
 
-export default EventPlace;
+const mapStateToProps = (state) => {
+  return {
+    events: state.liste,
+  };
+};
+
+export default connect(mapStateToProps, { etkinlikEkle })(
+  EventPlace
+);
