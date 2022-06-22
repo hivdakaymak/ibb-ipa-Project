@@ -14,16 +14,32 @@ import {
 } from "react-bootstrap";
 import { FaEdit } from "react-icons/fa";
 import Menu from "../compenents/Navbar";
-
-const INITIAL_STATE = [{ name: "Etkinlik Adı" }];
+import { useDispatch, useSelector } from 'react-redux'
+import { addEvent } from "../store/actions/event";
 
 const EventPlace = (props) => {
   const [text, setText] = useState("");
+  const dispatch = useDispatch();
+  const events = useSelector((state) => state.eventList);
+  console.log("🌵💜🐢", events, "EVENTS")
+
+  const submitEvent = (e) => {
+    e.preventDefault();
+
+    const newEvent = {
+      id: Math.random() * 10,
+      title: text,
+    }
+
+    dispatch(addEvent(newEvent))
+    setText("");
+  }
+
   return (
     <Container>
       <Row>
         <Menu title="Etkinlik Alanı Tanımlama" />
-        <Form>
+        <Form >
           <Form.Group className="mt-5 mb-3  " controlId="formBasicEmail">
             <h5 className="event-title text-center mb-3">
               Etkinlik Alanı Tanımlama
@@ -37,11 +53,11 @@ const EventPlace = (props) => {
               type="text"
             />
           </Form.Group>
+
         </Form>
         <Button
-          onClick={() => {
-            setText("");
-            props.etkinlikEkle(text);
+          onClick={(e) => {
+            submitEvent(e)
           }}
           className="login-save-button mb-4 mt-3"
           variant="info"
@@ -59,18 +75,20 @@ const EventPlace = (props) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td >
-                  Hangar
-                </td>
-                <td className="tableIcon">
-                  <span>
-                    <FaEdit />
-                  </span>
-                </td>
-              </tr>
-              <tr>
+              {events && events.map(event => {
+                return <tr key={event.id}>
+                  <td>{event.id}</td>
+                  <td >
+                    {event.title}
+                  </td>
+                  <td className="tableIcon">
+                    <span>
+                      <FaEdit />
+                    </span>
+                  </td>
+                </tr>
+              })}
+              {/* <tr>
                 <td>2</td>
                 <td>Havuz</td>
                 <td className="tableIcon">
@@ -105,7 +123,7 @@ const EventPlace = (props) => {
                     <FaEdit />
                   </span>
                 </td>
-              </tr>
+              </tr> */}
             </tbody>
           </Table>
         </div>
