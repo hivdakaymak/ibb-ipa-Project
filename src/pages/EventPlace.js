@@ -4,24 +4,23 @@ import { connect } from "react-redux";
 import { etkinlikEkle } from "../actions/action";
 import {
   Row,
-  Col,
   Container,
   Button,
   Form,
   Pagination,
-  Navbar,
   Table,
+  Modal,
 } from "react-bootstrap";
 import { FaEdit } from "react-icons/fa";
 import Menu from "../compenents/Navbar";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { addEvent } from "../store/actions/event";
+import EditModaler from "../compenents/EditModal";
 
 const EventPlace = (props) => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
   const events = useSelector((state) => state.eventList);
-  console.log("🌵💜🐢", events, "EVENTS")
 
   const submitEvent = (e) => {
     e.preventDefault();
@@ -29,17 +28,17 @@ const EventPlace = (props) => {
     const newEvent = {
       id: Math.random() * 10,
       title: text,
-    }
+    };
 
-    dispatch(addEvent(newEvent))
+    dispatch(addEvent(newEvent));
     setText("");
-  }
+  };
 
   return (
     <Container>
       <Row>
         <Menu title="Etkinlik Alanı Tanımlama" />
-        <Form >
+        <Form>
           <Form.Group className="mt-5 mb-3  " controlId="formBasicEmail">
             <h5 className="event-title text-center mb-3">
               Etkinlik Alanı Tanımlama
@@ -53,11 +52,10 @@ const EventPlace = (props) => {
               type="text"
             />
           </Form.Group>
-
         </Form>
         <Button
           onClick={(e) => {
-            submitEvent(e)
+            submitEvent(e);
           }}
           className="login-save-button mb-4 mt-3"
           variant="info"
@@ -75,55 +73,20 @@ const EventPlace = (props) => {
               </tr>
             </thead>
             <tbody>
-              {events && events.map(event => {
-                return <tr key={event.id}>
-                  <td>{event.id}</td>
-                  <td >
-                    {event.title}
-                  </td>
-                  <td className="tableIcon">
-                    <span>
-                      <FaEdit />
-                    </span>
-                  </td>
-                </tr>
-              })}
-              {/* <tr>
-                <td>2</td>
-                <td>Havuz</td>
-                <td className="tableIcon">
-                  <span>
-                    <FaEdit />
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Kütüphane</td>
-                <td className="tableIcon">
-                  <span>
-                    <FaEdit />
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Hangar</td>
-                <td className="tableIcon">
-                  <span>
-                    <FaEdit />
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Havuz</td>
-                <td className="tableIcon">
-                  <span>
-                    <FaEdit />
-                  </span>
-                </td>
-              </tr> */}
+              {events &&
+                events.map((event) => {
+                  return (
+                    <tr key={event.id}>
+                      <td>{event.id}</td>
+                      <td>{event.title}</td>
+                      <td className="editIcon">
+                        <span>
+                          <EditModaler />
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </Table>
         </div>
@@ -156,6 +119,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { etkinlikEkle })(
-  EventPlace
-);
+export default connect(mapStateToProps, { etkinlikEkle })(EventPlace);

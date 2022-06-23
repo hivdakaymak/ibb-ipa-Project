@@ -323,3 +323,16 @@
 .tableModal .modal-content{
   background-color: #2ab35b !important;
 }
+
+.editModalTitle{
+  color: white ;
+}
+
+.editModalButton{
+  background-color: white !important;
+  color: #1d4780 !important;
+}
+ 
+.editIcon button{
+  background-color: #1d4780 !important;
+}

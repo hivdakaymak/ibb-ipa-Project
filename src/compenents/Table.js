@@ -2,18 +2,7 @@ import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { Table } from "react-bootstrap";
 import TableModaler from "./TableModal";
-
-// import Swaler from "sweetalert2";
-
-// const editTable = () => {
-//   Swaler.fire({
-//     icon: "success",
-//     title: "Kaydedildi",
-//     text: "Başvurunuz kaydedildi",
-//     timer: 1500,
-//   });
-// };
-
+ 
 const TableCom = (props) => {
   return (
     <div>
