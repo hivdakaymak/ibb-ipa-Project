@@ -20,16 +20,16 @@ function event(state, action) {
         return state;
       }
       return Object.assign({}, state, { title: action.payload.title });
-    // yeni gelecek olan değer için obje oluştuırulduy
-    // var olanı kopyalıyoruz
-    // kullanıcıdan gelecek olanı aldık
+    // yeni gelecek olan değer için obje oluşturulur
+    // var olanı kopyalanır
+    // kullanıcıdan gelen değer alınır
 
     default:
       return state;
   }
 }
-// Bize actiondan dönen payload dönüyor. ekleme işlemi yapıyor
 
+// Bize actiondan dönen payload dönüyor. ekleme işlemi yapıyor
 function eventReducer(state = intialState, action) {
   switch (action.type) {
     case "ADD_EVENT":
@@ -39,7 +39,7 @@ function eventReducer(state = intialState, action) {
       return event(state, action);
 
     case "UPDATE_EVENT":
-      return state.map((data) => event(data,action))
+      return state.map((data) => event(data, action));
     default:
       return state;
   }

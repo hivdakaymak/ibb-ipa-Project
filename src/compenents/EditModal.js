@@ -22,6 +22,7 @@ function EditModal(id) {
     }
   };
 
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>

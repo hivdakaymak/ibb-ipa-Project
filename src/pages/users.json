@@ -1,0 +1,23 @@
+{
+    "users":[
+      {
+        "id":1,
+        "name":"Hivda",
+        "mail":"hivda@gmail.com",
+        "password":"123abc"
+      },
+      {
+        "id":1,
+        "name":"Hivda",
+        "mail":"a@a.com",
+        "password":"123abc"
+      },
+      {
+        "id":1,
+        "name":"Hivda",
+        "mail":"a@a.com",
+        "password":"123abc"
+      }
+
+    ]
+}

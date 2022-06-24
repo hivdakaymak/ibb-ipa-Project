@@ -2,7 +2,7 @@ import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { Table } from "react-bootstrap";
 import TableModaler from "./TableModal";
- 
+
 const TableCom = (props) => {
   return (
     <div>
@@ -15,92 +15,31 @@ const TableCom = (props) => {
         >
           <thead>
             <tr>
-              <th>{props.EtNo}</th>
-              <th>{props.EtAdi} </th>
-              <th>{props.EtAciklamasi} </th>
-              <th>{props.EtTarih} </th>
-              <th>{props.EtKonum} </th>
-              <th>{props.EtKontenjan} </th>
-              <th>{props.EtBasvuru} </th>
-              <th>{props.EtKalKontnjan} </th>
-              <th>{props.EtkinDuzenle} </th>
+              <th> Etkinlik No</th>
+              <th> Etkinlik Adı </th>
+              <th> Açıklama</th>
+              <th> Tarihi </th>
+              <th> Konum </th>
+              <th> Kontenjan</th>
+              <th> Başvuru</th>
+              <th> Kalan Kontenjan </th>
+              <th> Düzenle</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{props.EtkinNo} </td>
-              <td> {props.EtkinAdi} </td>
-              <td> {props.EtkinAcik} </td>
-              <td> {props.EtkinTarih} </td>
-              <td> {props.EtkinKonum} </td>
-              <td> {props.EtkinKontenjan} </td>
-              <td> {props.EtkinBasvuru} </td>
-              <td> {props.EtkinKalKontenjan} </td>
-              
+              <td>1 </td>
+              <td> Etkinlik 1 </td>
+              <td> Etkinlik Açıklaması </td>
+              <td> 29.0.2002 </td>
+              <td> Hangar </td>
+              <td> Kontenjan</td>
+              <td> Başvuru </td>
+              <td> Kalan Kontenjan </td>
+
               <td className="tableIcon">
                 <span>
                   <TableModaler />
-                  
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Etkinlik 2</td>
-              <td>Açıklama</td>
-              <td>10.11.2022</td>
-              <td>Hangar</td>
-              <td>100</td>
-              <td>75</td>
-              <td>25</td>
-              <td className="tableIcon">
-                <span>
-                  <FaEdit />
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Etkinlik 2</td>
-              <td>Açıklama</td>
-              <td>10.11.2022</td>
-              <td>Hangar</td>
-              <td>100</td>
-              <td>75</td>
-              <td>25</td>
-              <td className="tableIcon">
-                <span>
-                  <FaEdit />
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Etkinlik 2</td>
-              <td>Açıklama</td>
-              <td>10.11.2022</td>
-              <td>Hangar</td>
-              <td>100</td>
-              <td>75</td>
-              <td>25</td>
-              <td className="tableIcon">
-                <span>
-                  <FaEdit />
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Etkinlik 2</td>
-              <td>Açıklama</td>
-              <td>10.11.2022</td>
-              <td>Hangar</td>
-              <td>100</td>
-              <td>75</td>
-              <td>25</td>
-              <td className="tableIcon">
-                <span>
-                  <FaEdit />
                 </span>
               </td>
             </tr>
