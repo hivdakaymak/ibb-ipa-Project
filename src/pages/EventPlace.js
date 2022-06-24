@@ -11,11 +11,12 @@ import {
   Table,
   Modal,
 } from "react-bootstrap";
-import { FaEdit } from "react-icons/fa";
 import Menu from "../compenents/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { addEvent } from "../store/actions/event";
 import EditModaler from "../compenents/EditModal";
+
+import { FaEraser } from "react-icons/fa";
 
 const EventPlace = (props) => {
   const [text, setText] = useState("");
@@ -25,13 +26,15 @@ const EventPlace = (props) => {
   const submitEvent = (e) => {
     e.preventDefault();
 
-    const newEvent = {
-      id: Math.random() * 10,
-      title: text,
-    };
+    if (text.trim()) {
+      const newEvent = {
+        // id: Math.random() * 10,
+        name: text,
+      };
 
-    dispatch(addEvent(newEvent));
-    setText("");
+      dispatch(addEvent(newEvent));
+      setText("");
+    }
   };
 
   return (
@@ -73,16 +76,14 @@ const EventPlace = (props) => {
               </tr>
             </thead>
             <tbody>
-              {events &&
+              {events.length > 0 &&
                 events.map((event) => {
                   return (
                     <tr key={event.id}>
                       <td>{event.id}</td>
                       <td>{event.title}</td>
                       <td className="editIcon">
-                        <span>
-                          <EditModaler />
-                        </span>
+                        <EditModaler id={event.id} />
                       </td>
                     </tr>
                   );
@@ -113,10 +114,4 @@ const EventPlace = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    events: state.liste,
-  };
-};
-
-export default connect(mapStateToProps, { etkinlikEkle })(EventPlace);
+export default EventPlace;

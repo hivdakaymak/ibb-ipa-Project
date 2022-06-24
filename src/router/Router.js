@@ -10,6 +10,7 @@ import PolicyUserList from "../pages/PolicyUserList";
 import Verification from "../pages/Verification";
 import { Provider } from 'react-redux'
 import store from '../store/'
+
 const Routers = () => {
   return (
     <Router>
@@ -23,12 +24,12 @@ const Routers = () => {
           <Route path="/events" element={<Events />} />
           <Route path="/policy-user-list" element={<PolicyUserList />} />
           <Route path="/verification" element={<Verification />} />
-
         </Routes>
       </Provider>
     </Router>
   );
 };
+
 store.subscribe(Routers);
 
 export default Routers;

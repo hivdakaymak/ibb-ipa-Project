@@ -6,7 +6,7 @@ import { Button, ThemeProvider, Container } from "react-bootstrap";
 import  Route  from "./router/Router";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ root.render(
   <React.StrictMode>
     <ThemeProvider breakpoints={["xxl", "xl", "lg", "md", "sm", "xs"]}>
           <Route />
