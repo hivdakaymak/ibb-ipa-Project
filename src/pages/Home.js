@@ -14,6 +14,9 @@ import {
 import Menu from "../compenents/Navbar";
 import Swaler from "sweetalert2";
 import TablePage from "../compenents/Table";
+import { useState } from "react";
+import { addEventHome } from "../store/actions/event";
+import { useDispatch, useSelector } from "react-redux";
 
 const homeSave = () => {
   Swaler.fire({
@@ -25,6 +28,32 @@ const homeSave = () => {
 };
 
 const Home = () => {
+  // const [text, setText] = useState("");
+  const [name, setName] = useState("");
+  const [desc, setDesc] = useState("");
+  const [place, setPlace] = useState("");
+  const [kont, setKont] = useState("");
+  const [date, setDate] = useState("");
+  const dispatch = useDispatch();
+  const submitEvent = (e) => {
+    e.preventDefault();
+    // sayfa yenilenmesini engelliyoruz
+
+    // trim içindeki boşlukları
+    if (name.trim()) {
+      const newEvent = {
+        name: name,
+        desc: desc,
+        place: place,
+        date: date,
+        kont: kont,
+      };
+    
+
+      dispatch(addEventHome(newEvent));
+      setName("");
+    }
+  };
   return (
     <Container>
       <Row>
@@ -36,9 +65,11 @@ const Home = () => {
                 <Form.Label className="">Etkinlik Adı </Form.Label>
               </Col>
               <Form.Control
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="login-form-input "
                 type="text"
-                placeholder="Enter email"
+                placeholder="Etkinlik Adı Giriniz"
               />
             </Form.Group>
             <Form.Group className="mt-4 d-flex">
@@ -50,19 +81,24 @@ const Home = () => {
                 controlId="floatingTextarea2"
                 label="Comments"
               >
-                <Form.Control as="textarea" style={{ height: "150px" }} />
+                <Form.Control
+                  value={desc}
+                  onChange={(e) => setDesc(e.target.value)}
+                  as="textarea"
+                  style={{ height: "150px" }}
+                />
               </FloatingLabel>
             </Form.Group>
           </Form>
         </Col>
         <Col md={6} className="mb-4">
           <Form style={{ marginLeft: "60px" }}>
-            <Form.Group
+            {/* <Form.Group
               className="mt-5 mb-3 d-flex align-items-center justify-content-between"
               controlId="formBasicEmail"
             >
               <Form.Label className="">Etkinlik Alanı</Form.Label>
-              {/* <Form.Control className="login-form-input " type="text" /> */}
+           
               <select
                 className="form-select login-form-input "
                 aria-label="Default select example"
@@ -72,25 +108,52 @@ const Home = () => {
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
+            </Form.Group> */}
+
+            <Form.Group
+              className="mt-5 mb-3 d-flex align-items-center justify-content-between"
+              controlId="formBasicEmail"
+            >
+              <Form.Label className=""> Etkinlik Alanı</Form.Label>
+              <Form.Control
+                value={place}
+                onChange={(e) => setPlace(e.target.value)}
+                className="login-form-input "
+                type="text"
+              />
             </Form.Group>
+
             <Form.Group
               className="mt-5 mb-3 d-flex align-items-center justify-content-between"
               controlId="formBasicEmail"
             >
               <Form.Label className=""> Kontenjan</Form.Label>
-              <Form.Control className="login-form-input " type="text" />
+              <Form.Control
+                value={kont}
+                onChange={(e) => setKont(e.target.value)}
+                className="login-form-input "
+                type="text"
+              />
             </Form.Group>
             <Form.Group
               className="mt-5 mb-3 d-flex align-items-center justify-content-between"
               controlId="formBasicEmail"
             >
               <Form.Label className="">Etkinlik Tarihi</Form.Label>
-              <Form.Control className="login-form-input " type="text" />
+              <Form.Control
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="login-form-input "
+                type="text"
+              />
             </Form.Group>
           </Form>
         </Col>
         <Button
-          onClick={homeSave}
+          // onClick={homeSave}
+          onClick={(e) => {
+            submitEvent(e);
+          }}
           className="login-save-button mb- mt-5"
           variant="info"
         >
@@ -115,7 +178,7 @@ const Home = () => {
           EtkinKontenjan="Kontenjan 1"
           EtkinBasvuru="Başvuru 1"
           EtkinKalKontenjan="Kalan 1"
-         />
+        />
 
         <Pagination className="pagination d-flex align-items-center justify-content-center mb-5">
           <div className="beforeLink">

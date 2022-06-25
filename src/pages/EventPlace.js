@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addEvent } from "../store/actions/event";
 import EditModaler from "../compenents/EditModal";
 
-import { FaEraser } from "react-icons/fa";
+
 
 const EventPlace = (props) => {
   const [text, setText] = useState("");

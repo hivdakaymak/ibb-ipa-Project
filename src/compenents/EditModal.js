@@ -8,6 +8,7 @@ function EditModal(id) {
   const [show, setShow] = useState(false);
   const [text, setText] = useState("");
   const dispatch = useDispatch();
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -21,7 +22,6 @@ function EditModal(id) {
       handleClose();
     }
   };
-
 
   return (
     <>
@@ -55,7 +55,11 @@ function EditModal(id) {
           >
             Kapat <FaRegTimesCircle />
           </Button>
-          <Button onClick={updateHandle} className="editModalButton" Fvariant="primary">
+          <Button
+            onClick={updateHandle}
+            className="editModalButton"
+            Fvariant="primary"
+          >
             Kaydet <FaRegEdit />
           </Button>
           <Button

@@ -3,8 +3,13 @@ import { Modal, Button, FloatingLabel } from "react-bootstrap";
 import { FaEdit, FaRegEdit } from "react-icons/fa";
 import TablePage from "../compenents/Table";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from "react-redux";
+// import { addEventHome } from "../store/actions/event";
 
 function Modaler() {
+  const [text, setText] = useState("");
+  const dispatch = useDispatch();
+
   const [smShow, setSmShow] = useState(false);
   const [lgShow, setLgShow] = useState(false);
 
@@ -29,14 +34,19 @@ function Modaler() {
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Etkinlik Adı</Form.Label>
-              <Form.Control type="text" placeholder="Etkinlik Adı Yazınız" />
+              <Form.Control
+                 onChange={(e) => setText(e.target.value)}
+                type="text"
+                placeholder="Etkinlik Adı Yazınız"
+              />
             </Form.Group>
             <Form.Label>Etkinlik Açıklaması</Form.Label>
             <FloatingLabel controlId="floatingTextarea2" label="Comments">
               <Form.Control
+                onChange={(e) => setText(e.target.value)}
                 as="textarea"
                 placeholder="Etkinlik Açıklaması"
-                style={{ height: "80px" }}
+                style={{ height: "100px" }}
               />
             </FloatingLabel>
             <Form.Label>Etkinlik Alanı</Form.Label>
@@ -49,15 +59,20 @@ function Modaler() {
             </Form.Select>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Kontenjan</Form.Label>
-              <Form.Control type="text" placeholder="Kontenjan" />
+              <Form.Control
+                onChange={(e) => setText(e.target.value)}
+                type="text"
+                placeholder="Kontenjan"
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Etkinlik Tarihi</Form.Label>
-              <Form.Control type="text" placeholder="Etkinlik Tarihi" />
+              <Form.Control
+                onChange={(e) => setText(e.target.value)}
+                type="text"
+                placeholder="Etkinlik Tarihi"
+              />
             </Form.Group>
-
-            <Button>Submit</Button>
-
             <Button className="editModalButton" Fvariant="primary">
               Kaydet <FaRegEdit />
             </Button>
@@ -70,12 +85,7 @@ function Modaler() {
         onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            Large Modal
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>...</Modal.Body>
+      
       </Modal>
     </>
   );

@@ -19,5 +19,9 @@ export function updatedEvent(event) {
   };
 }
 
-
-
+export function addEventHome(event) {
+  return {
+    type: "ADD_EVENT_HOME",
+    payload: event,
+  };
+}

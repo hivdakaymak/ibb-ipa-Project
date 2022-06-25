@@ -2,8 +2,11 @@ import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { Table } from "react-bootstrap";
 import TableModaler from "./TableModal";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 const TableCom = (props) => {
+  const events = useSelector((state) => state.eventList);
   return (
     <div>
       <div className="table-responsive-md">
@@ -13,36 +16,38 @@ const TableCom = (props) => {
           bordered
           hover
         >
+          {/* Tablo Başlık Kısmı */}
           <thead>
             <tr>
               <th> Etkinlik No</th>
               <th> Etkinlik Adı </th>
               <th> Açıklama</th>
-              <th> Tarihi </th>
-              <th> Konum </th>
+              <th> Etkinlik Alanı </th>
               <th> Kontenjan</th>
-              <th> Başvuru</th>
-              <th> Kalan Kontenjan </th>
+              <th> Tarihi </th>
               <th> Düzenle</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1 </td>
-              <td> Etkinlik 1 </td>
-              <td> Etkinlik Açıklaması </td>
-              <td> 29.0.2002 </td>
-              <td> Hangar </td>
-              <td> Kontenjan</td>
-              <td> Başvuru </td>
-              <td> Kalan Kontenjan </td>
 
-              <td className="tableIcon">
-                <span>
-                  <TableModaler />
-                </span>
-              </td>
-            </tr>
+          {/* Tablo İerik Kısmı  */}
+          <tbody>   
+            {events.length > 0 &&
+              events.map((event) => {
+                return (
+                  <tr key={event.id}>
+                    <td>{event.id}</td>
+                    <td>{event.name}</td>
+                    <td>{event.desc}</td>
+                    <td>{event.place}</td>
+                    <td>{event.kont}</td>
+                    <td>{event.date}</td>
+                    
+                    <td className="editIcon">
+                      <TableModaler id={event.id} />
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </Table>
       </div>
