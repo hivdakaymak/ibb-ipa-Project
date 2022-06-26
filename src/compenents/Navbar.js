@@ -5,7 +5,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbars = (props) => {
   const [showMenu, setShowMenu] = React.useState(false);
-
+  let userData = localStorage.getItem("user-data")
+  userData = JSON.parse(userData)
 
 
   return (
@@ -26,7 +27,7 @@ const Navbars = (props) => {
       <Col md={3} className="d-flex justify-content-end">
         <div className="dropdownMenu">
           <div className="d-flex ipaUser align-items-center justify-content-between">
-            <div>IPA USER</div>{" "}
+            <div>{userData.name}</div>{" "}
             <div>
               <img src="/img/arrow.png" />
             </div>

@@ -2,19 +2,19 @@
     "users":[
       {
         "id":1,
-        "name":"Hivda",
+        "name":"Hivda1",
         "mail":"hivda@gmail.com",
         "password":"123abc"
       },
       {
-        "id":1,
-        "name":"Hivda",
+        "id":2,
+        "name":"Hivda2",
         "mail":"a@a.com",
         "password":"123abc"
       },
       {
-        "id":1,
-        "name":"Hivda",
+        "id":3,
+        "name":"Hivd3a",
         "mail":"a@a.com",
         "password":"123abc"
       }
