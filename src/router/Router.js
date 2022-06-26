@@ -10,13 +10,14 @@ import PolicyUserList from "../pages/PolicyUserList";
 import Verification from "../pages/Verification";
 import { Provider } from 'react-redux'
 import store from '../store/'
+import LoginPage from "../pages/LoginPage";
 
 const Routers = () => {
   return (
     <Router>
       <Provider store={store}>
         <Routes>
-          <Route index element={<Index />} />
+          <Route  path="/events-var" element={<Index />} />
           <Route path="/event-place" element={<EventPlaces />} />
           <Route path="/event-date" element={<EventDate />} />
           <Route path="/social-policy" element={<SocialPolicy />} />
@@ -24,6 +25,7 @@ const Routers = () => {
           <Route path="/events" element={<Events />} />
           <Route path="/policy-user-list" element={<PolicyUserList />} />
           <Route path="/verification" element={<Verification />} />
+          <Route index element={<LoginPage />} />
         </Routes>
       </Provider>
     </Router>

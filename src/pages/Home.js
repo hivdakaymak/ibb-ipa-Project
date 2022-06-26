@@ -48,10 +48,13 @@ const Home = () => {
         date: date,
         kont: kont,
       };
-    
 
       dispatch(addEventHome(newEvent));
       setName("");
+      setDesc("");
+      setPlace("");
+      setDate("");
+      setKont("");
     }
   };
   return (
@@ -118,6 +121,7 @@ const Home = () => {
               <Form.Control
                 value={place}
                 onChange={(e) => setPlace(e.target.value)}
+                placeholder={"Etkinlik alanı giriniz"}
                 className="login-form-input "
                 type="text"
               />
@@ -132,6 +136,7 @@ const Home = () => {
                 value={kont}
                 onChange={(e) => setKont(e.target.value)}
                 className="login-form-input "
+                placeholder="Kontenjan giriniz"
                 type="text"
               />
             </Form.Group>
@@ -145,6 +150,7 @@ const Home = () => {
                 onChange={(e) => setDate(e.target.value)}
                 className="login-form-input "
                 type="text"
+                placeholder="Etkinlik tarihi"
               />
             </Form.Group>
           </Form>

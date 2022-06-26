@@ -26,6 +26,7 @@ function event(state, action) {
     // var olanı kopyalanır
     // kullanıcıdan gelen değer alınır
 
+    // Home !
     case "ADD_EVENT_HOME":
       return {
         id: id,
@@ -58,6 +59,7 @@ function eventReducer(state = intialState, action) {
 
     case "ADD_EVENT_HOME":
       id = id + 1;
+      console.log(action.payload,"PAYLOAD")
       return [...state, event(null, action)];
   }
 }
