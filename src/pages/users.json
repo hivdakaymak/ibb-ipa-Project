@@ -1,20 +1,9 @@
 {
-    "users":[
-      {
-        "id":1,
-        "name":"Hivda",
-        "password":"123abc"
-      },
-      {
-        "id":2,
-        "name":"Hivda2",
-        "password":"123absdvdc"
-      },
-      {
-        "id":3,
-        "name":"Hivda3",
-        "password":"123asdcbc"
-      }
-
-    ]
+  "users": [
+    {
+      "id": 1,
+      "name": "hivda",
+      "password": "123"
+    }
+  ]
 }
