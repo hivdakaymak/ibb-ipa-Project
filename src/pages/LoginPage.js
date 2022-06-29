@@ -9,23 +9,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object({
-  firstName: Yup.string().required("Lütfen adınızı yazınız"),
-  lastName: Yup.string().required("Lütfen şifrenizi giriniz"),
+  name: Yup.string().required("Lütfen adınızı yazınız"),
+  password: Yup.string().required("Lütfen şifrenizi giriniz"),
 });
 
 const LoginPage = () => {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
-  const userHandler = (e) => {};
 
   return (
     <Container>
-      <Menu title="Gİrİş Sayfası" />
+      <Menu title="Giriş Sayfası" />
       <Row>
         <Formik
-          initialValues={{ firstName: "", lastName: "" }}
+          initialValues={{ name: "", password: "" }}
           validationSchema={validationSchema}
           // onSubmit={(e) => {
           //   handleSubmit(e);
@@ -33,13 +31,17 @@ const LoginPage = () => {
           // }}
 
           onSubmit={(values, { setSubmitting }) => {
-         
+
             console.log(values);
             const userControl = UsersData.users.find(
               (data) => data.name === values.name
             );
             if (userControl) {
+              console.log("🌵💜🐢", "controll")
+
               if (userControl.password === values.password) {
+                console.log("🌵💜🐢", "burada")
+
                 localStorage.setItem("user-data", JSON.stringify(userControl));
                 navigate("/events-var");
               }
@@ -52,21 +54,21 @@ const LoginPage = () => {
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                name="firstName"
+                name="name"
                 placeholder="Ad"
                 onChange={handleChange}
-                values={values.firstName}
+                values={values.name}
               />
-              {errors.firstName && errors.firstName}
+              {errors.name && errors.name}
 
               <input
                 type="text"
-                name="lastName"
+                name="password"
                 placeholder="Şifre"
                 onChange={handleChange}
-                values={values.lastName}
+                values={values.password}
               />
-              {errors.lastName && errors.lastName}
+              {errors.password && errors.password}
 
               <button
                 variant="primary"

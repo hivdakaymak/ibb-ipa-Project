@@ -27,7 +27,7 @@ const Navbars = (props) => {
       <Col md={3} className="d-flex justify-content-end">
         <div className="dropdownMenu">
           <div className="d-flex ipaUser align-items-center justify-content-between">
-            <div>{userData.name}</div>{" "}
+            <div>{userData && userData.name}</div>{" "}
             <div>
               <img src="/img/arrow.png" />
             </div>
