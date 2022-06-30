@@ -14,9 +14,7 @@ const validationSchema = Yup.object({
 });
 
 const LoginPage = () => {
-
   const navigate = useNavigate();
-
 
   return (
     <Container>
@@ -25,23 +23,13 @@ const LoginPage = () => {
         <Formik
           initialValues={{ name: "", password: "" }}
           validationSchema={validationSchema}
-          // onSubmit={(e) => {
-          //   handleSubmit(e);
-          //   e.preventDefault();
-          // }}
-
-          onSubmit={(values, { setSubmitting }) => {
-
+              onSubmit={(values, { setSubmitting }) => {
             console.log(values);
             const userControl = UsersData.users.find(
               (data) => data.name === values.name
             );
             if (userControl) {
-              console.log("🌵💜🐢", "controll")
-
               if (userControl.password === values.password) {
-                console.log("🌵💜🐢", "burada")
-
                 localStorage.setItem("user-data", JSON.stringify(userControl));
                 navigate("/events-var");
               }
@@ -51,24 +39,36 @@ const LoginPage = () => {
         >
           {({ handleSubmit, handleChange, values, errors, isSubmitting }) => (
             //
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Ad"
-                onChange={handleChange}
-                values={values.name}
-              />
-              {errors.name && errors.name}
-
-              <input
-                type="text"
-                name="password"
-                placeholder="Şifre"
-                onChange={handleChange}
-                values={values.password}
-              />
-              {errors.password && errors.password}
+            <Form
+              className="d-flex align-items-center justify-content-center mt-5"
+              onSubmit={handleSubmit}
+            >
+              <Form.Group
+                className="mb-3 "
+                style={{ marginRight: "20px" }}
+                controlId="formBasicEmail"
+              >
+                <Form.Label>Adınız</Form.Label>
+                <Form.Control
+                  name="name"
+                  onChange={handleChange}
+                  values={values.name}
+                  type="text"
+                  placeholder="Adınızı giriniz"
+                />
+                {errors.name && errors.name}
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Şifreniz</Form.Label>
+                <Form.Control
+                  name="password"
+                  placeholder="Şifrenizi giriniz"
+                  onChange={handleChange}
+                  values={values.password}
+                  type="text"
+                />
+                {errors.password && errors.password}
+              </Form.Group>
 
               <button
                 variant="primary"
@@ -77,14 +77,17 @@ const LoginPage = () => {
                 style={{
                   width: "15%",
                   border: "none",
-                  background: "#0dcaf0",
-                  padding: "10px",
+                  background: "rgb(13, 202, 240)",
+                  padding: "7px",
                   color: "white",
+                  borderRadius: "6px",
+                  marginTop: "16px",
+                  marginLeft: "20px",
                 }}
               >
                 Giriş Yap
               </button>
-            </form>
+            </Form>
           )}
         </Formik>
       </Row>
