@@ -53,12 +53,11 @@ function eventReducer(state = intialState, action) {
 
     case "DELETE_EVENT":
       return event(state, action);
-      case "LOGIN_USER":
-        return {
-          
-          ...state,
-          loginUser: action.payload
-        };
+    case "LOGIN_USER":
+      return {
+        ...state,
+        loginUser: action.payload
+      };
 
     case "UPDATE_EVENT":
       return state.map((data) => event(data, action));

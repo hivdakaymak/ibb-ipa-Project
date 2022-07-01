@@ -10,14 +10,14 @@ const Navbars = (props) => {
   let userData = localStorage.getItem("user-data");
   const userInfo = useSelector((state) => state.eventList.loginUser);
   const navigate = useNavigate();
-  // userData = JSON.parse(userData);
+  userData = JSON.parse(userData);
   // useEffect(() => {}, [userInfo]);
 
-  // const logOut = () => {
-  //   localStorage.removeItem("user-data");
-  //   console.log("çıkış yapıldı");
-  //   navigate("/");
-  // };
+  const logOut = () => {
+    localStorage.removeItem("user-data");
+    console.log("çıkış yapıldı");
+    navigate("/");
+  };
 
   return (
     <Navbar>
@@ -37,7 +37,7 @@ const Navbars = (props) => {
       <Col md={3} className="d-flex justify-content-end">
         <div className="dropdownMenu">
           <div className="d-flex ipaUser align-items-center justify-content-between">
-            <div>{userInfo ? userInfo : "Giriş yap"}</div>
+            <div>{userData ? userData.name : "Giriş yap"}</div>
 
             <div>
               <img src="/img/arrow.png" />
@@ -48,6 +48,9 @@ const Navbars = (props) => {
             <ul>
               <li>
                 <Link to={"/"}>Etkinlik Tanımlama</Link>
+              </li>
+              <li>
+                <button onClick={e => logOut()}>çıkış</button>
               </li>
               <li>
                 <Link to={"/social-policy"}>Sosyal Politikalar</Link>

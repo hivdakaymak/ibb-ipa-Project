@@ -46,7 +46,7 @@ const LoginPage = () => {
             );
             if (userControl) {
               if (userControl.password === values.password) {
-                dispatch(addLoginUser(userControl.name));
+                // dispatch(addLoginUser(userControl.name));
                 localStorage.setItem("user-data", JSON.stringify(userControl));
                 navigate("/events-var");
               }
