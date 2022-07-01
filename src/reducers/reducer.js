@@ -2,6 +2,7 @@ import { EKLE } from "../actions/action";
 
 const INITIAL_STATE = {
   events: [{ name: "Etkinlik Adı 1" }, { name: "Etkinlik Adı 2" }],
+  loginUser: {}
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {

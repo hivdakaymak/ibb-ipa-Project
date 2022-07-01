@@ -7,6 +7,8 @@ import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import UsersData from "./users.json";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addLoginUser } from "../store/actions/event";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Lütfen adınızı yazınız"),
@@ -15,6 +17,8 @@ const validationSchema = Yup.object({
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch()
 
   return (
     <Container>
@@ -30,6 +34,7 @@ const LoginPage = () => {
             );
             if (userControl) {
               if (userControl.password === values.password) {
+                dispatch(addLoginUser(userControl.name))
                 localStorage.setItem("user-data", JSON.stringify(userControl));
                 navigate("/events-var");
               }
@@ -65,7 +70,7 @@ const LoginPage = () => {
                   placeholder="Şifrenizi giriniz"
                   onChange={handleChange}
                   values={values.password}
-                  type="text"
+                  type="password"
                 />
                 {errors.password && errors.password}
               </Form.Group>

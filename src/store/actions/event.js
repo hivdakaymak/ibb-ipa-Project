@@ -25,3 +25,10 @@ export function addEventHome(event) {
     payload: event,
   };
 }
+
+export function addLoginUser(event) {
+  return {
+    type: "LOGIN_USER",
+    payload: event,
+  };
+}

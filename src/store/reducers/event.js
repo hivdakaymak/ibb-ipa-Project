@@ -1,6 +1,8 @@
 let id = 0;
 
-const intialState = [];
+const intialState = [
+
+];
 
 function event(state, action) {
   switch (action.type) {
@@ -51,6 +53,11 @@ function eventReducer(state = intialState, action) {
 
     case "DELETE_EVENT":
       return event(state, action);
+      case "LOGIN_USER":
+        return {
+          ...state,
+          loginUser: action.payload
+        };
 
     case "UPDATE_EVENT":
       return state.map((data) => event(data, action));
@@ -59,7 +66,7 @@ function eventReducer(state = intialState, action) {
 
     case "ADD_EVENT_HOME":
       id = id + 1;
-      console.log(action.payload,"PAYLOAD")
+      console.log(action.payload, "PAYLOAD");
       return [...state, event(null, action)];
   }
 }
