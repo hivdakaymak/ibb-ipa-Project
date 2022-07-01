@@ -26,8 +26,8 @@ function Modaler(id) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const updateHandle =  (e) => {
-    e.preventDefault()
+  const updateHandle = (e) => {
+    e.preventDefault();
     const newData = {
       name: name,
       desc: desc,
@@ -35,11 +35,17 @@ function Modaler(id) {
       date: kont,
       kont: date,
     };
-console.log("a")
-    if (name.trim() || desc.trim()|| place.trim() || kont.trim() || date.trim()) {
-      console.log("b")
-       dispatch(deleteEvent(id));
-       dispatch(addEventHome(newData));
+    console.log("a");
+    if (
+      name.trim() ||
+      desc.trim() ||
+      place.trim() ||
+      kont.trim() ||
+      date.trim()
+    ) {
+      console.log("b");
+      dispatch(deleteEvent(id));
+      dispatch(addEventHome(newData));
       handleClose();
     }
   };
@@ -81,7 +87,10 @@ console.log("a")
               />
             </FloatingLabel>
             <Form.Label>Etkinlik Alanı</Form.Label>
-            <Form.Select value={place} onChange={e=> setPlace(e.target.value)}>
+            <Form.Select
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+            >
               <option>Alan 1</option>
               <option>Alan 2</option>
               <option>Alan 3</option>
@@ -106,7 +115,7 @@ console.log("a")
             </Form.Group>
 
             <Button
-              onClick={(e)=>updateHandle(e)}
+              onClick={(e) => updateHandle(e)}
               className="editModalButton"
               Fvariant="primary"
               style={{ marginRight: "20px" }}

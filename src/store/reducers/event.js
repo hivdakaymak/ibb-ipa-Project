@@ -55,6 +55,7 @@ function eventReducer(state = intialState, action) {
       return event(state, action);
       case "LOGIN_USER":
         return {
+          
           ...state,
           loginUser: action.payload
         };

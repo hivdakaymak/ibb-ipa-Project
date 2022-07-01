@@ -5,7 +5,7 @@ import Menu from "../compenents/Navbar";
 
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import UsersData from "./users.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addLoginUser } from "../store/actions/event";
@@ -17,8 +17,20 @@ const validationSchema = Yup.object({
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const [login, unLogin] = useState();
 
-  const dispatch = useDispatch()
+  console.log(localStorage.UsersData);
+
+  useEffect(() => {
+    if (localStorage.getItem('user-data')) {
+      // console.log("user data");
+      navigate("/events-var");
+    } else {
+      navigate("/");
+      console.log("else çalışıyorr");
+    }
+  });
 
   return (
     <Container>
@@ -27,14 +39,14 @@ const LoginPage = () => {
         <Formik
           initialValues={{ name: "", password: "" }}
           validationSchema={validationSchema}
-              onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
+          onSubmit={(values, { setSubmitting }) => {
+            // console.log(values);
             const userControl = UsersData.users.find(
               (data) => data.name === values.name
             );
             if (userControl) {
               if (userControl.password === values.password) {
-                dispatch(addLoginUser(userControl.name))
+                dispatch(addLoginUser(userControl.name));
                 localStorage.setItem("user-data", JSON.stringify(userControl));
                 navigate("/events-var");
               }

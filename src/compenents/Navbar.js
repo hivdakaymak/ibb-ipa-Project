@@ -3,15 +3,21 @@ import { Link } from "react-router-dom";
 import { Navbar, Col, Row, Button } from "react-bootstrap";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useSelector } from "react-redux/es/exports";
+import { useNavigate } from "react-router-dom";
 
 const Navbars = (props) => {
   const [showMenu, setShowMenu] = React.useState(false);
   let userData = localStorage.getItem("user-data");
-  const userInfo = useSelector(state => state.eventList.loginUser)
+  const userInfo = useSelector((state) => state.eventList.loginUser);
+  const navigate = useNavigate();
   // userData = JSON.parse(userData);
-  useEffect(()=>{
-    console.log(userInfo, "hivdaaa");
-  }, [userInfo])
+  // useEffect(() => {}, [userInfo]);
+
+  // const logOut = () => {
+  //   localStorage.removeItem("user-data");
+  //   console.log("çıkış yapıldı");
+  //   navigate("/");
+  // };
 
   return (
     <Navbar>
@@ -31,9 +37,8 @@ const Navbars = (props) => {
       <Col md={3} className="d-flex justify-content-end">
         <div className="dropdownMenu">
           <div className="d-flex ipaUser align-items-center justify-content-between">
-            {/* <div>{userData && userData.name}</div>{" "} */}
-           <div>{userInfo ? userInfo : "Giriş yap"}</div>
-           
+            <div>{userInfo ? userInfo : "Giriş yap"}</div>
+
             <div>
               <img src="/img/arrow.png" />
             </div>
@@ -67,6 +72,9 @@ const Navbars = (props) => {
               </li>
             </ul>
           </div>
+        </div>
+        <div>
+          {/* <button onClick={logOut()}>çıkış yap</button> */}
         </div>
       </Col>
       <button
