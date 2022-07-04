@@ -18,13 +18,11 @@ const validationSchema = Yup.object({
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const [login, unLogin] = useState();
 
   console.log(localStorage.UsersData);
 
   useEffect(() => {
-    if (localStorage.getItem('user-data')) {
-      // console.log("user data");
+    if (localStorage.getItem("user-data")) {
       navigate("/events-var");
     } else {
       navigate("/");
@@ -40,13 +38,11 @@ const LoginPage = () => {
           initialValues={{ name: "", password: "" }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            // console.log(values);
             const userControl = UsersData.users.find(
               (data) => data.name === values.name
             );
             if (userControl) {
               if (userControl.password === values.password) {
-                // dispatch(addLoginUser(userControl.name));
                 localStorage.setItem("user-data", JSON.stringify(userControl));
                 navigate("/events-var");
               }

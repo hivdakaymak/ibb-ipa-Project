@@ -7,7 +7,6 @@ import {
   Form,
   Button,
   FloatingLabel,
-  Table,
   Pagination,
 } from "react-bootstrap";
 
@@ -28,7 +27,6 @@ const homeSave = () => {
 };
 
 const Home = () => {
-  // const [text, setText] = useState("");
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [place, setPlace] = useState("");
@@ -37,9 +35,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const submitEvent = (e) => {
     e.preventDefault();
-    // sayfa yenilenmesini engelliyoruz
 
-    // trim içindeki boşlukları
     if (name.trim()) {
       const newEvent = {
         name: name,
@@ -96,23 +92,6 @@ const Home = () => {
         </Col>
         <Col md={6} className="mb-4">
           <Form style={{ marginLeft: "60px" }}>
-            {/* <Form.Group
-              className="mt-5 mb-3 d-flex align-items-center justify-content-between"
-              controlId="formBasicEmail"
-            >
-              <Form.Label className="">Etkinlik Alanı</Form.Label>
-           
-              <select
-                className="form-select login-form-input "
-                aria-label="Default select example"
-              >
-                <option selected>Seçiniz</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </Form.Group> */}
-
             <Form.Group
               className="mt-5 mb-3 d-flex align-items-center justify-content-between"
               controlId="formBasicEmail"
@@ -156,7 +135,6 @@ const Home = () => {
           </Form>
         </Col>
         <Button
-          // onClick={homeSave}
           onClick={(e) => {
             submitEvent(e);
           }}

@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { connect } from "react-redux";
-import { etkinlikEkle } from "../actions/action";
+
 import {
   Row,
   Container,
@@ -9,7 +8,6 @@ import {
   Form,
   Pagination,
   Table,
-  Modal,
 } from "react-bootstrap";
 import Menu from "../compenents/Navbar";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +26,6 @@ const EventPlace = (props) => {
 
     if (text.trim()) {
       const newEvent = {
-        // id: Math.random() * 10,
         name: text,
       };
 

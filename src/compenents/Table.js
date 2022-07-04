@@ -1,9 +1,7 @@
 import React from "react";
-import { FaEdit } from "react-icons/fa";
 import { Table } from "react-bootstrap";
 import TableModaler from "./TableModal";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 
 const TableCom = (props) => {
   const events = useSelector((state) => state.eventList);
@@ -16,7 +14,6 @@ const TableCom = (props) => {
           bordered
           hover
         >
-          {/* Tablo Başlık Kısmı */}
           <thead>
             <tr>
               <th> Etkinlik No</th>
@@ -29,7 +26,6 @@ const TableCom = (props) => {
             </tr>
           </thead>
 
-          {/* Tablo İerik Kısmı  */}
           <tbody>   
             {events.length > 0 &&
               events.map((event) => {

@@ -48,9 +48,6 @@ const Navbars = (props) => {
               <li>
                 <Link to={"/"}>Etkinlik Tanımlama</Link>
               </li>
-              {/* <li>
-                <button onClick={e => logOut()}>çıkış</button>
-              </li> */}
               <li>
                 <Link to={"/social-policy"}>Sosyal Politikalar</Link>
               </li>
@@ -78,8 +75,7 @@ const Navbars = (props) => {
         <button className="logOutButton" onClick={(e) => logOut()}>
           çıkış
         </button>
-
-        <div>{/* <button onClick={logOut()}>çıkış yap</button> */}</div>
+ 
       </Col>
       <button
         className="mobile-button d-block d-md-none  "

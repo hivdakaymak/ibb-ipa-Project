@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { Modal, Button, FloatingLabel } from "react-bootstrap";
 import { FaEdit, FaRegEdit, FaEraser } from "react-icons/fa";
-import TablePage from "../compenents/Table";
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
 import {
-  addEvent,
   addEventHome,
   deleteEvent,
-  updatedEvent,
 } from "../store/actions/event";
 
 function Modaler(id) {
-  const [text, setText] = useState("");
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
@@ -24,7 +20,6 @@ function Modaler(id) {
   const [smShow, setSmShow] = useState(false);
   const [lgShow, setLgShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const updateHandle = (e) => {
     e.preventDefault();

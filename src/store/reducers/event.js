@@ -1,8 +1,6 @@
 let id = 0;
 
-const intialState = [
-
-];
+const intialState = [];
 
 function event(state, action) {
   switch (action.type) {
@@ -13,9 +11,9 @@ function event(state, action) {
       };
 
     case "DELETE_EVENT":
-      console.log(state, "DELETE STATE");
+      // console.log(state, "DELETE STATE");
       return state.filter((event) => {
-        console.log(event, "EVENT");
+        // console.log(event, "EVENT");
         return event.id !== action.payload.id;
       });
 
@@ -39,6 +37,11 @@ function event(state, action) {
         date: action.payload.date,
       };
 
+    case "DELETE_USER":
+      return state.filter((event) => {
+        return event.id !== action.payload.id;
+      });
+      
     default:
       return state;
   }
@@ -53,10 +56,11 @@ function eventReducer(state = intialState, action) {
 
     case "DELETE_EVENT":
       return event(state, action);
+
     case "LOGIN_USER":
       return {
         ...state,
-        loginUser: action.payload
+        loginUser: action.payload,
       };
 
     case "UPDATE_EVENT":
@@ -68,6 +72,9 @@ function eventReducer(state = intialState, action) {
       id = id + 1;
       console.log(action.payload, "PAYLOAD");
       return [...state, event(null, action)];
+
+    case "DELETE_USER":
+      return event(state, action);
   }
 }
 

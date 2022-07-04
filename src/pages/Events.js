@@ -138,7 +138,6 @@ const Events = () => {
                   İptal Edildi
                 </button>
 
-                {/* <FaExclamation /> */}
               </td>
             </tr>
             <tr>

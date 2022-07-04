@@ -12,7 +12,6 @@ function Modaler() {
     <>
       <div
         className="d-flex align-items-center justify-content-center modal-button"
-        // style={{ height: "100vh" }}
       >
         <Button variant="primary" onClick={handleShow}>
           <FaRegQuestionCircle />
