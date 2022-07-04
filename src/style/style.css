@@ -15,7 +15,7 @@
   border-bottom: 5px solid #faac32;
 }
 
-.mobile-button  {
+.mobile-button {
   color: #1d4780;
   background-color: transparent;
   border: none;
@@ -320,20 +320,28 @@
   background-color: transparent !important;
   border: none !important;
 }
-.tableModal .modal-content{
+.tableModal .modal-content {
   background-color: #2ab35b !important;
 }
 
-.editModalTitle{
-  color: white ;
+.editModalTitle {
+  color: white;
 }
 
-.editModalButton{
+.editModalButton {
   background-color: white !important;
   color: #1d4780 !important;
 }
- 
-.editIcon button, .homeEditButton {
+
+.editIcon button,
+.homeEditButton {
   background-color: #1d4780 !important;
 }
- 
+
+.logOutButton {
+  border: none;
+  width: 30%;
+  margin-left: 20px;
+  background-color: #5a595c;
+  color: white;
+}
