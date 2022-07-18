@@ -54,7 +54,6 @@ const policyformSchema = Yup.object().shape({
 // };
 const initialValues = {
   email: "",
-  password: "",
   firstName: "",
   lastName: "",
   idNo: "",
@@ -66,15 +65,41 @@ const initialValues = {
 const validate = (values) => {
   let errors = {};
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
   if (!values.email) {
     errors.email = "Lütfen E-mail adresinizi giriniz";
   } else if (!regex.test(values.email)) {
     errors.email = "Geçersiz E-mail";
   }
-  if (!values.password) {
-    errors.password = "Lütfen şifrenizi giriniz";
-  } else if (values.password.length < 4) {
-    errors.password = "Şifreniz en az 4 karakterden oluşmalıdır";
+
+  if (!values.firstName) {
+    errors.firstName = "Lütfen adınızı giriniz";
+  } else if (values.firstName.length < 3) {
+    errors.firstName = "Adınız en az 3 harften oluşmalıdır";
+  }
+
+  if (!values.lastName) {
+    errors.lastName = "Lütfen soyadınızı giriniz";
+  } else if (values.lastName.length < 3) {
+    errors.lastName = "Soyadınız en az 3 harften oluşmalıdır";
+  }
+
+  if (!values.idNo) {
+    errors.idNo = "Lütfen şifrenizi giriniz";
+  } else if (values.idNo.length < 11) {
+    errors.idNo = "  Tc Kimlik 11 haneden oluşmalıdır";
+  }
+
+  if (!values.phoneNumber) {
+    errors.phoneNumber = "Lütfen telefon numaranızı giriniz";
+  } else if (values.phoneNumber.length < 11) {
+    errors.phoneNumber = "Telefon numarası haneden oluşmalıdır";
+  }
+
+  if (!values.cardNo) {
+    errors.cardNo = "Lütfen kart numaranızı giriniz";
+  } else if (values.cardNo.length < 10) {
+    errors.cardNo = "Kart no 10 haneden oluşmalıdır";
   }
   return errors;
 };
@@ -113,10 +138,23 @@ const PolicyForm = () => {
                   >
                     <Form.Label className=""> Ad</Form.Label>
                     <Form.Control
-                      className="login-form-input "
+                      // className="login-form-input "
                       name="firstName"
                       type="text"
+                      value={values.firstName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.firstName && touched.firstName
+                          ? "input-error login-form-input"
+                          : null
+                      }
                     />
+                    {errors.firstName && touched.firstName && (
+                      <span className="error policyFormError">
+                        {errors.firstName}
+                      </span>
+                    )}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
@@ -124,10 +162,23 @@ const PolicyForm = () => {
                   >
                     <Form.Label className="policyText"> Soyad</Form.Label>
                     <Form.Control
-                      className="login-form-input "
+                      // className="login-form-input "
                       name="lastName"
                       type="text"
+                      value={values.lastName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.lastName && touched.lastName
+                          ? "input-error login-form-input"
+                          : null
+                      }
                     />
+                    {errors.lastName && touched.lastName && (
+                      <span className="error policyFormError">
+                        {errors.lastName}
+                      </span>
+                    )}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
@@ -135,10 +186,21 @@ const PolicyForm = () => {
                   >
                     <Form.Label className="policyText"> TCKN</Form.Label>
                     <Form.Control
-                      className="login-form-input "
+                      // className="login-form-input "
                       name="idNo"
                       type="text"
+                      value={values.idNo}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.idNo && touched.idNo ? "input-error " : null
+                      }
                     />
+                    {errors.idNo && touched.idNo && (
+                      <span className="error policyFormError">
+                        {errors.idNo}
+                      </span>
+                    )}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
@@ -152,14 +214,17 @@ const PolicyForm = () => {
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={ 
-                        errors.email && touched.email ? "input-error login-form-input" : null
+                      className={
+                        errors.email && touched.email
+                          ? "input-error login-form-input"
+                          : null
                       }
                     />
                     {errors.email && touched.email && (
-                      <span className="error">{errors.email}</span>
+                      <span className="error policyFormError">
+                        {errors.email}
+                      </span>
                     )}
-                    
                   </Form.Group>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
@@ -167,10 +232,23 @@ const PolicyForm = () => {
                   >
                     <Form.Label className="policyText"> Telefon</Form.Label>
                     <Form.Control
-                      className="login-form-input "
+                      // className="login-form-input "
                       name="phoneNumber"
                       type="text"
+                      value={values.phoneNumber}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.phoneNumber && touched.phoneNumber
+                          ? "input-error "
+                          : null
+                      }
                     />
+                    {errors.phoneNumber && touched.phoneNumber && (
+                      <span className="error policyFormError">
+                        {errors.phoneNumber}
+                      </span>
+                    )}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 mb-5 d-flex align-items-center justify-content-between"
@@ -182,10 +260,23 @@ const PolicyForm = () => {
                     </Form.Label>
                     <InputGroup className="login-form-input ">
                       <Form.Control
-                        className=" none-border-r"
+                        // className="login-form-input "
                         name="cardNo"
                         type="text"
+                        value={values.cardNo}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={
+                          errors.cardNo && touched.cardNo
+                            ? "input-error "
+                            : null
+                        }
                       />
+                      {errors.cardNo && touched.cardNo && (
+                        <span className="error policyFormError">
+                          {errors.cardNo}
+                        </span>
+                      )}
                       <div className="input-group-prepend  ">
                         <div class="input-group-text none-border-l  bg-transparent p-0 border-left-0">
                           <Modaler />

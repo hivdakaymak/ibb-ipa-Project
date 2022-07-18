@@ -345,3 +345,7 @@
   background-color: #5a595c;
   color: white;
 }
+.policyFormError {
+  font-weight: 600;
+  color: red;
+}
