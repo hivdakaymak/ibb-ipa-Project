@@ -69,6 +69,7 @@ const Home = () => {
                 className="login-form-input "
                 type="text"
                 placeholder="Etkinlik Adı Giriniz"
+                required
               />
             </Form.Group>
             <Form.Group className="mt-4 d-flex">
@@ -84,6 +85,7 @@ const Home = () => {
                   value={desc}
                   onChange={(e) => setDesc(e.target.value)}
                   as="textarea"
+                  required
                   style={{ height: "150px" }}
                 />
               </FloatingLabel>
@@ -103,6 +105,7 @@ const Home = () => {
                 placeholder={"Etkinlik alanı giriniz"}
                 className="login-form-input "
                 type="text"
+                required
               />
             </Form.Group>
 
@@ -116,7 +119,8 @@ const Home = () => {
                 onChange={(e) => setKont(e.target.value)}
                 className="login-form-input "
                 placeholder="Kontenjan giriniz"
-                type="text"
+                type="number"
+                required
               />
             </Form.Group>
             <Form.Group
@@ -128,8 +132,9 @@ const Home = () => {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className="login-form-input "
-                type="text"
+                type="date"
                 placeholder="Etkinlik tarihi"
+                required
               />
             </Form.Group>
           </Form>

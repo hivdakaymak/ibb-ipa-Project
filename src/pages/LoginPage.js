@@ -3,12 +3,10 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Menu from "../compenents/Navbar";
 
-import { Container, Row, Form, Button, Col } from "react-bootstrap";
+import { Container, Row, Form } from "react-bootstrap";
 import UsersData from "./users.json";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addLoginUser } from "../store/actions/event";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Lütfen adınızı yazınız"),
@@ -20,15 +18,6 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   console.log(localStorage.UsersData);
-
-  useEffect(() => {
-    if (localStorage.getItem("user-data")) {
-      navigate("/events-var");
-    } else {
-      navigate("/");
-      console.log("else çalışıyorr");
-    }
-  });
 
   return (
     <Container>

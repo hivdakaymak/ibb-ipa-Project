@@ -7,7 +7,6 @@ import {
   FaUserAlt,
   FaRegClock,
 } from "react-icons/fa";
-import Menu from "../compenents/Navbar";
 
 const SocialPolicy = () => {
   return (

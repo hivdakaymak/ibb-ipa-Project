@@ -9,7 +9,7 @@ const TableCom = (props) => {
     <div>
       <div className="table-responsive-md">
         <Table
-          className="mb-5 mt-5 text-center   tableTitle"
+          className="mb-5 mt-5 text-center tableTitle"
           striped
           bordered
           hover
@@ -26,7 +26,7 @@ const TableCom = (props) => {
             </tr>
           </thead>
 
-          <tbody>   
+          <tbody>
             {events.length > 0 &&
               events.map((event) => {
                 return (
@@ -37,7 +37,7 @@ const TableCom = (props) => {
                     <td>{event.place}</td>
                     <td>{event.kont}</td>
                     <td>{event.date}</td>
-                    
+
                     <td className="editIcon">
                       <TableModaler id={event.id} />
                     </td>

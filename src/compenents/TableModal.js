@@ -3,10 +3,7 @@ import { Modal, Button, FloatingLabel } from "react-bootstrap";
 import { FaEdit, FaRegEdit, FaEraser } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
-import {
-  addEventHome,
-  deleteEvent,
-} from "../store/actions/event";
+import { addEventHome, deleteEvent } from "../store/actions/event";
 
 function Modaler(id) {
   const dispatch = useDispatch();
@@ -27,10 +24,9 @@ function Modaler(id) {
       name: name,
       desc: desc,
       place: place,
-      date: kont,
-      kont: date,
+      kont: kont,
+      date: date,
     };
-    console.log("a");
     if (
       name.trim() ||
       desc.trim() ||
@@ -38,7 +34,6 @@ function Modaler(id) {
       kont.trim() ||
       date.trim()
     ) {
-      console.log("b");
       dispatch(deleteEvent(id));
       dispatch(addEventHome(newData));
       handleClose();
@@ -65,7 +60,7 @@ function Modaler(id) {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Etkinlik Adı</Form.Label>
+              <Form.Label>Etkinlik Adı </Form.Label>
               <Form.Control
                 onChange={(e) => setName(e.target.value)}
                 type="text"
@@ -96,7 +91,7 @@ function Modaler(id) {
               <Form.Label>Kontenjan</Form.Label>
               <Form.Control
                 onChange={(e) => setKont(e.target.value)}
-                type="text"
+                type="number"
                 placeholder="Kontenjan"
               />
             </Form.Group>
@@ -104,7 +99,7 @@ function Modaler(id) {
               <Form.Label>Etkinlik Tarihi</Form.Label>
               <Form.Control
                 onChange={(e) => setDate(e.target.value)}
-                type="text"
+                type="date"
                 placeholder="Etkinlik Tarihi"
               />
             </Form.Group>

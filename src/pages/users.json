@@ -6,8 +6,13 @@
       "password": "123"
     },
     {
-      "id":2,
+      "id": 2,
       "name": "ugur",
+      "password": "123"
+    },
+    {
+      "id": 3,
+      "name": "bulut",
       "password": "123"
     }
   ]

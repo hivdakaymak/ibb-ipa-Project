@@ -39,4 +39,3 @@ export function deleteUser(id) {
     payload: id,
   };
 }
-

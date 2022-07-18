@@ -11,9 +11,7 @@ function event(state, action) {
       };
 
     case "DELETE_EVENT":
-      // console.log(state, "DELETE STATE");
       return state.filter((event) => {
-        // console.log(event, "EVENT");
         return event.id !== action.payload.id;
       });
 

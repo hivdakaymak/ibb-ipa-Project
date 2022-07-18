@@ -1,22 +1,33 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Col, Row, Button } from "react-bootstrap";
+import { Navbar, Col } from "react-bootstrap";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useSelector } from "react-redux/es/exports";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteUser } from "../store/actions/event";
 
-const Navbars = (props) => {
+const Navbars = (props, id) => {
+  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = React.useState(false);
   let userData = localStorage.getItem("user-data");
-  const userInfo = useSelector((state) => state.eventList.loginUser);
   const navigate = useNavigate();
   userData = JSON.parse(userData);
 
   const logOut = () => {
     localStorage.removeItem("user-data");
-    console.log("çıkış yapıldı");
     navigate("/");
+    dispatch(deleteUser(id));
   };
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("user-data")) {
+  //     const logOut = () => {
+  //       dispatch(deleteUser(id));
+  //     };
+  //   } else {
+  //     console.log("else çalışıyor");
+  //   }
+  // });
 
   return (
     <Navbar>
@@ -72,10 +83,11 @@ const Navbars = (props) => {
             </ul>
           </div>
         </div>
-        <button className="logOutButton" onClick={(e) => logOut()}>
-          çıkış
-        </button>
- 
+        {userData && (
+          <button className="logOutButton" onClick={(e) => logOut()}>
+            Çıkış
+          </button>
+        )}
       </Col>
       <button
         className="mobile-button d-block d-md-none  "
