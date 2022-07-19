@@ -11,36 +11,33 @@ import {
 import Menu from "../compenents/Navbar";
 import Modaler from "../compenents/Modal";
 import Swaler from "sweetalert2";
-import { useFormik, Formik } from 'formik';
+import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
 
 const policyformSchema = Yup.object({
   firstName: Yup.string()
-    .label("Lütfen adınızı giriniz")
     .min(3, "En az 3 harfli olmalıdır")
-    .max(5, "En fazla 5 harfli olabilir")
-    .required("Lütfen adınızı Yazınız"),
+    .required("Zorunlu Alan"),
 
   lastName: Yup.string()
     .min(3, "En az 3 harfli olmalıdır")
-    .max(5, "En fazla 5 harfli olabilir")
-    .required("Lütfen soyadınızı Yazınız"),
+    .required("Zorunlu Alan"),
 
   idNo: Yup.string()
     .min(11, "Tc Kimlik Numaranız 11 haneden oluşmalıdır.")
-    .required("Lütfen Tc Kimlik Numaranızı doldurunuz"),
+    .required("Zorunlu Alan"),
 
-  mail: Yup.string().email().required("Email is required"),
+  mail: Yup.string().email().required("Geçersiz E-mail"),
 
   phoneNumber: Yup.string()
     .matches(
       /^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g,
       "Geçersiz Telefon Numarası !"
     )
-    .required("Lütfen telefon numaranızı giriniz"),
+    .required("Zorunlu Alan"),
   cardNo: Yup.string()
     .min(11, "İstanbul Kart Numaranız 11 haneden oluşmalıdır.")
-    .required("Lütfen İstanbul Kart Numaranız doldurunuz"),
+    .required("Zorunlu Alan"),
 });
 
 const submitForm = (values) => {
@@ -52,11 +49,16 @@ const PolicyForm = () => {
     <>
       <Formik
         initialValues={{
-          firstName: ''
+          firstName: "",
+          lastName: "",
+          idNo: "",
+          mail: "",
+          phoneNumber: "",
+          cardNo: "",
         }}
         validationSchema={policyformSchema}
-        onSubmit= {values => {
-          console.log(values)
+        onSubmit={(values) => {
+          console.log(values);
         }}
       >
         {({
@@ -91,8 +93,8 @@ const PolicyForm = () => {
                       onChange={handleChange}
                       values={values.firstName}
                     />
-                    {errors.firstName ? errors.firstName : null}
                   </Form.Group>
+                  <div className="policyFormError d-flex justify-content-end">{errors.firstName ? errors.firstName : null}</div>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
@@ -106,12 +108,15 @@ const PolicyForm = () => {
                     <Form.Control
                       name="lastName"
                       type="text"
-                      value={values.lastName}
                       onChange={handleChange}
-                      onBlur={handleBlur}
+                      values={values.lastName}
                     />
                   </Form.Group>
-                  <Form.Group
+                  <div className="policyFormError d-flex justify-content-end">
+                    {" "}
+                    {errors.lastName ? errors.lastName : null}
+                  </div>
+                  <Form.Group 
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
                   >
@@ -124,11 +129,12 @@ const PolicyForm = () => {
                     <Form.Control
                       name="idNo"
                       type="text"
-                      value={values.idNo}
                       onChange={handleChange}
-                      onBlur={handleBlur}
+                      values={values.idNo}
                     />
                   </Form.Group>
+                  {" "}
+                  <div className="policyFormError d-flex justify-content-end"> {errors.idNo ? errors.idNo : null}</div>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
@@ -142,11 +148,12 @@ const PolicyForm = () => {
                     <Form.Control
                       name="email"
                       type="text"
-                      value={values.email}
                       onChange={handleChange}
-                      onBlur={handleBlur}
+                      values={values.mail}
                     />
                   </Form.Group>
+                  {" "}
+                  <div className="policyFormError d-flex justify-content-end"> {errors.mail ? errors.mail : null}</div>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
@@ -160,11 +167,14 @@ const PolicyForm = () => {
                     <Form.Control
                       name="phoneNumber"
                       type="text"
-                      value={values.phoneNumber}
                       onChange={handleChange}
-                      onBlur={handleBlur}
+                      values={values.phoneNumber}
                     />
                   </Form.Group>
+                  <div className="policyFormError d-flex justify-content-end">
+                    {" "}
+                    {errors.phoneNumber ? errors.phoneNumber : null}
+                  </div>
                   <Form.Group
                     className="mt-3 mb-5 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"

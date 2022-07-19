@@ -347,9 +347,8 @@
 }
 .policyFormError {
   font-weight: 600;
-  color: white;
+  color: red;
   min-width: 260px;
-  background: red;
   padding: 5px;
   border-radius: 10px;
   margin-left: 20px;
