@@ -11,11 +11,12 @@ import {
 import Menu from "../compenents/Navbar";
 import Modaler from "../compenents/Modal";
 import Swaler from "sweetalert2";
-import { Formik } from "formik";
+import { useFormik, Formik } from 'formik';
 import * as Yup from "yup";
 
-const policyformSchema = Yup.object().shape({
+const policyformSchema = Yup.object({
   firstName: Yup.string()
+    .label("Lütfen adınızı giriniz")
     .min(3, "En az 3 harfli olmalıdır")
     .max(5, "En fazla 5 harfli olabilir")
     .required("Lütfen adınızı Yazınız"),
@@ -42,68 +43,6 @@ const policyformSchema = Yup.object().shape({
     .required("Lütfen İstanbul Kart Numaranız doldurunuz"),
 });
 
-// Kaydedildi Uyarısı
-
-// const formButton = () => {
-//   Swaler.fire({
-//     icon: "success",
-//     title: "Kaydedildi",
-//     text: "Başvurunuz kaydedildi",
-//     timer: 1500,
-//   });
-// };
-const initialValues = {
-  email: "",
-  firstName: "",
-  lastName: "",
-  idNo: "",
-  mail: "",
-  phoneNumber: "",
-  cardNo: "",
-};
-
-const validate = (values) => {
-  let errors = {};
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-  if (!values.email) {
-    errors.email = "Lütfen E-mail adresinizi giriniz";
-  } else if (!regex.test(values.email)) {
-    errors.email = "Geçersiz E-mail";
-  }
-
-  if (!values.firstName) {
-    errors.firstName = "Lütfen adınızı giriniz";
-  } else if (values.firstName.length < 3) {
-    errors.firstName = "Adınız en az 3 harften oluşmalıdır";
-  }
-
-  if (!values.lastName) {
-    errors.lastName = "Lütfen soyadınızı giriniz";
-  } else if (values.lastName.length < 3) {
-    errors.lastName = "Soyadınız en az 3 harften oluşmalıdır";
-  }
-
-  if (!values.idNo) {
-    errors.idNo = "Lütfen şifrenizi giriniz";
-  } else if (values.idNo.length < 11) {
-    errors.idNo = "  Tc Kimlik 11 haneden oluşmalıdır";
-  }
-
-  if (!values.phoneNumber) {
-    errors.phoneNumber = "Lütfen telefon numaranızı giriniz";
-  } else if (values.phoneNumber.length < 11) {
-    errors.phoneNumber = "Telefon numarası haneden oluşmalıdır";
-  }
-
-  if (!values.cardNo) {
-    errors.cardNo = "Lütfen kart numaranızı giriniz";
-  } else if (values.cardNo.length < 10) {
-    errors.cardNo = "Kart no 10 haneden oluşmalıdır";
-  }
-  return errors;
-};
-
 const submitForm = (values) => {
   console.log(values);
 };
@@ -112,9 +51,13 @@ const PolicyForm = () => {
   return (
     <>
       <Formik
-        initialValues={initialValues}
-        validate={validate}
-        onSubmit={submitForm}
+        initialValues={{
+          firstName: ''
+        }}
+        validationSchema={policyformSchema}
+        onSubmit= {values => {
+          console.log(values)
+        }}
       >
         {({
           values,
@@ -136,128 +79,102 @@ const PolicyForm = () => {
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
                   >
-                    <Form.Label className=""> Ad</Form.Label>
+                    <Col
+                      md={2}
+                      className="d-flex align-items-center justify-content-"
+                    >
+                      <Form.Label className=""> Ad</Form.Label>
+                    </Col>
                     <Form.Control
-                      // className="login-form-input "
                       name="firstName"
                       type="text"
-                      value={values.firstName}
                       onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={
-                        errors.firstName && touched.firstName
-                          ? "input-error login-form-input"
-                          : null
-                      }
+                      values={values.firstName}
                     />
-                    {errors.firstName && touched.firstName && (
-                      <span className="error policyFormError">
-                        {errors.firstName}
-                      </span>
-                    )}
+                    {errors.firstName ? errors.firstName : null}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
                   >
-                    <Form.Label className="policyText"> Soyad</Form.Label>
+                    <Col
+                      md={2}
+                      className="d-flex align-items-center justify-content-"
+                    >
+                      <Form.Label className=""> Soyad</Form.Label>
+                    </Col>
                     <Form.Control
-                      // className="login-form-input "
                       name="lastName"
                       type="text"
                       value={values.lastName}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.lastName && touched.lastName
-                          ? "input-error login-form-input"
-                          : null
-                      }
                     />
-                    {errors.lastName && touched.lastName && (
-                      <span className="error policyFormError">
-                        {errors.lastName}
-                      </span>
-                    )}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
                   >
-                    <Form.Label className="policyText"> TCKN</Form.Label>
+                    <Col
+                      md={2}
+                      className="d-flex align-items-center justify-content-"
+                    >
+                      <Form.Label className=""> TCKN</Form.Label>
+                    </Col>
                     <Form.Control
-                      // className="login-form-input "
                       name="idNo"
                       type="text"
                       value={values.idNo}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.idNo && touched.idNo ? "input-error " : null
-                      }
                     />
-                    {errors.idNo && touched.idNo && (
-                      <span className="error policyFormError">
-                        {errors.idNo}
-                      </span>
-                    )}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
                   >
-                    <Form.Label className="policyText"> E-Posta</Form.Label>
+                    <Col
+                      md={2}
+                      className="d-flex align-items-center justify-content-"
+                    >
+                      <Form.Label className=""> E-Posta</Form.Label>
+                    </Col>
                     <Form.Control
-                      // className="login-form-input "
                       name="email"
                       type="text"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.email && touched.email
-                          ? "input-error login-form-input"
-                          : null
-                      }
                     />
-                    {errors.email && touched.email && (
-                      <span className="error policyFormError">
-                        {errors.email}
-                      </span>
-                    )}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
                   >
-                    <Form.Label className="policyText"> Telefon</Form.Label>
+                    <Col
+                      md={2}
+                      className="d-flex align-items-center justify-content-"
+                    >
+                      <Form.Label className=""> Telefon</Form.Label>
+                    </Col>
                     <Form.Control
-                      // className="login-form-input "
                       name="phoneNumber"
                       type="text"
                       value={values.phoneNumber}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={
-                        errors.phoneNumber && touched.phoneNumber
-                          ? "input-error "
-                          : null
-                      }
                     />
-                    {errors.phoneNumber && touched.phoneNumber && (
-                      <span className="error policyFormError">
-                        {errors.phoneNumber}
-                      </span>
-                    )}
                   </Form.Group>
                   <Form.Group
                     className="mt-3 mb-5 d-flex align-items-center justify-content-between"
                     controlId="formBasicEmail"
                   >
-                    <Form.Label className="policyText">
-                      {" "}
-                      İstanbul Kart No
-                    </Form.Label>
+                    <Col
+                      md={2}
+                      className="d-flex align-items-center justify-content-start"
+                    >
+                      <Form.Label className=""> İstanbul Kart No</Form.Label>
+                    </Col>
                     <InputGroup className="login-form-input ">
                       <Form.Control
                         // className="login-form-input "
@@ -273,9 +190,9 @@ const PolicyForm = () => {
                         }
                       />
                       {errors.cardNo && touched.cardNo && (
-                        <span className="error policyFormError">
+                        <div className="error policyFormError">
                           {errors.cardNo}
-                        </span>
+                        </div>
                       )}
                       <div className="input-group-prepend  ">
                         <div class="input-group-text none-border-l  bg-transparent p-0 border-left-0">
@@ -300,7 +217,7 @@ const PolicyForm = () => {
                   </div>
                   <Col
                     md={12}
-                    className="d-flex align-items-cengter justify-content-center policyFormButton mb-5"
+                    className="d-flex align-items-center justify-content-center policyFormButton mb-5"
                   >
                     <Button
                       // onClick={formButton}
