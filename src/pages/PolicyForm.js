@@ -13,6 +13,7 @@ import Modaler from "../compenents/Modal";
 import Swaler from "sweetalert2";
 import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
+import Table from "react-bootstrap/Table";
 
 const policyformSchema = Yup.object({
   firstName: Yup.string()
@@ -27,9 +28,7 @@ const policyformSchema = Yup.object({
     .min(11, "Tc Kimlik Numaranız 11 haneden oluşmalıdır.")
     .required("Zorunlu Alan"),
 
-  mail: Yup.string()
-    .email("geçersiz E-mail")
-    .required("Zorunlu alan"),
+  mail: Yup.string().email("geçersiz E-mail").required("Zorunlu alan"),
 
   phoneNumber: Yup.number()
     .required("Lütfen geçerli bir telefon numarası giriniz")
@@ -99,10 +98,17 @@ const PolicyForm = () => {
                       type="text"
                       onChange={handleChange}
                       values={values.firstName}
+                      className={
+                        errors.firstName && touched.firstName
+                          ? "input-error"
+                          : "input-succes"
+                      }
                     />
                   </Form.Group>
                   <div className="policyFormError d-flex justify-content-end">
-                    {errors.firstName ? errors.firstName : null}
+                    {errors.firstName && touched.firstName
+                      ? errors.firstName
+                      : null}
                   </div>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
@@ -119,6 +125,7 @@ const PolicyForm = () => {
                       type="text"
                       onChange={handleChange}
                       values={values.lastName}
+                      className={errors.lastName ? "input-error" : ""}
                     />
                   </Form.Group>
                   <div className="policyFormError d-flex justify-content-end">
@@ -140,9 +147,7 @@ const PolicyForm = () => {
                       type="text"
                       onChange={handleChange}
                       values={values.idNo}
-                      className={
-                        errors.idNo && touched.idNo ? "input-error" : ""
-                      }
+                      className={errors.idNo ? "input-error" : ""}
                     />
                   </Form.Group>{" "}
                   <div className="policyFormError d-flex justify-content-end">
@@ -164,6 +169,7 @@ const PolicyForm = () => {
                       type="mail"
                       onChange={handleChange}
                       values={values.mail}
+                      className={errors.mail ? "input-error" : ""}
                     />
                   </Form.Group>{" "}
                   <div className="policyFormError d-flex justify-content-end">
@@ -185,6 +191,7 @@ const PolicyForm = () => {
                       type="number"
                       onChange={handleChange}
                       values={values.phoneNumber}
+                      className={errors.phoneNumber ? "input-error" : ""}
                     />
                   </Form.Group>
                   <div className="policyFormError d-flex justify-content-end">
@@ -209,11 +216,7 @@ const PolicyForm = () => {
                         value={values.cardNo}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className={
-                          errors.cardNo && touched.cardNo
-                            ? "input-error "
-                            : null
-                        }
+                        className={errors.cardNo ? "input-error" : ""}
                       />
                       {errors.cardNo && touched.cardNo && (
                         <div className="error policyFormError">
@@ -266,6 +269,43 @@ const PolicyForm = () => {
                     </Button>
                   </Col>
                 </Form>
+              </Col>
+            </Row>
+            <Row className="d-flex align-items-center justify-content-center">
+              <Col className="mb-5" md={9}>
+                <Table striped bordered hover size="sm">
+                  <thead>
+                    <tr className="policy-form-heading">
+                      <th>id</th>
+                      <th>Ad</th>
+                      <th>Soyad</th>
+                      <th>TC Kimlik No</th>
+                      <th>E-Posta</th>
+                      <th>Telefon</th>
+                      <th>İstanbul Kart No</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>hivda</td>
+                      <td>Kaymak</td>
+                      <td>0123456789</td>
+                      <td>miray@gmail.com</td>
+                      <td>x xxx xxx xx xx</td>
+                      <td>1 231 25645 25</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>eda ♥</td>
+                      <td>aydın</td>
+                      <td>0123456789</td>
+                      <td>eda@gmail.com</td>
+                      <td>x xxx xxx xx xx</td>
+                      <td>1 231 25645 25</td>
+                    </tr>
+                  </tbody>
+                </Table>
               </Col>
             </Row>
           </Container>

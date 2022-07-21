@@ -39,3 +39,10 @@ export function deleteUser(id) {
     payload: id,
   };
 }
+
+export function addEventPolicyForm(event) {
+  return {
+    type: "ADD_EVENT_POLICY_FORM",
+    payload: event,
+  };
+}

@@ -354,5 +354,14 @@
   margin-left: 20px;
 }
 .input-error {
-  border: 1px solid red;
+  border: 1px solid red !important;
+}
+
+input-succes {
+  border: 1px solid green !important;
+}
+
+.policy-form-heading {
+  background-color: #009cd8;
+  color: white;
 }
