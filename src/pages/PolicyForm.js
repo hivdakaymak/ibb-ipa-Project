@@ -1,19 +1,14 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Navbar,
-  Col,
-  Form,
-  Button,
-  InputGroup,
-} from "react-bootstrap";
+import { Container, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import Menu from "../compenents/Navbar";
 import Modaler from "../compenents/Modal";
 import Swaler from "sweetalert2";
 import { useFormik, Formik } from "formik";
 import * as Yup from "yup";
 import Table from "react-bootstrap/Table";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addEventPolicyForm } from "../store/actions/event";
 
 const policyformSchema = Yup.object({
   firstName: Yup.string()
@@ -24,7 +19,7 @@ const policyformSchema = Yup.object({
     .min(3, "En az 3 harfli olmalıdır")
     .required("Zorunlu Alan"),
 
-  idNo: Yup.string()
+  TcNo: Yup.string()
     .min(11, "Tc Kimlik Numaranız 11 haneden oluşmalıdır.")
     .required("Zorunlu Alan"),
 
@@ -32,8 +27,7 @@ const policyformSchema = Yup.object({
 
   phoneNumber: Yup.number()
     .required("Lütfen geçerli bir telefon numarası giriniz")
-    .min(7, "En az 7 Haneden oluşmalıdır")
-    .max(15, "En fazla 15 haneden oluşabilir."),
+    .min(10, "En az 10 Haneden oluşmalıdır"),
 
   cardNo: Yup.string()
     .min(11, "İstanbul Kart Numaranız 11 haneden oluşmalıdır.")
@@ -49,13 +43,23 @@ const submitForm = (values) => {
 };
 
 const PolicyForm = () => {
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [tcNo, setTcNo] = useState("");
+  const [mail, setMail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [cardNo, setCardNo] = useState("");
+  const events = useSelector((state) => state.eventList);
+
+  const dispatch = useDispatch();
+
   return (
     <>
       <Formik
         initialValues={{
           firstName: "",
           lastName: "",
-          idNo: "",
+          TcNo: "",
           mail: "",
           phoneNumber: "",
           cardNo: "",
@@ -64,7 +68,7 @@ const PolicyForm = () => {
         }}
         validationSchema={policyformSchema}
         onSubmit={(values) => {
-          console.log(values);
+          dispatch(addEventPolicyForm(values));
         }}
       >
         {({
@@ -76,12 +80,15 @@ const PolicyForm = () => {
           handleBlur,
           isValid,
           dirty,
+          setFieldValue
         }) => (
           <Container>
             <Row>
               <Menu title="SOSYAL POLİTİKALAR ÇALIŞTAYI BAŞVURU FORMU" />
 
               <Col md={9} className="policyForm mt-5">
+                {JSON.stringify(values, null, 2)}
+                <pre>{JSON.stringify(errors, null, 2)}</pre>
                 <Form className="" onSubmit={handleSubmit}>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
@@ -94,10 +101,12 @@ const PolicyForm = () => {
                       <Form.Label className=""> Ad</Form.Label>
                     </Col>
                     <Form.Control
+                      onFocus={console.log("focuslandım")}
+                      onBlur={console.log("ayrıldım")}
                       name="firstName"
                       type="text"
-                      onChange={handleChange}
                       values={values.firstName}
+                      onChange={handleChange}
                       className={
                         errors.firstName && touched.firstName
                           ? "input-error"
@@ -124,6 +133,10 @@ const PolicyForm = () => {
                       name="lastName"
                       type="text"
                       onChange={handleChange}
+                      // onChange={(e) => {
+                      //   handleChange();
+                      //   setLastName(e.target.value);
+                      // }}
                       values={values.lastName}
                       className={errors.lastName ? "input-error" : ""}
                     />
@@ -143,16 +156,16 @@ const PolicyForm = () => {
                       <Form.Label className=""> TCKN</Form.Label>
                     </Col>
                     <Form.Control
-                      name="idNo"
-                      type="text"
+                      name="TcNo"
+                      type="number"
                       onChange={handleChange}
-                      values={values.idNo}
-                      className={errors.idNo ? "input-error" : ""}
+                      values={values.TcNo}
+                      className={errors.TcNo ? "input-error" : ""}
                     />
                   </Form.Group>{" "}
                   <div className="policyFormError d-flex justify-content-end">
                     {" "}
-                    {errors.idNo ? errors.idNo : null}
+                    {errors.TcNo ? errors.TcNo : null}
                   </div>
                   <Form.Group
                     className="mt-3 d-flex align-items-center justify-content-between"
@@ -239,6 +252,8 @@ const PolicyForm = () => {
                         type="checkbox"
                         name="consentText"
                         label="Açık Rıza Metni"
+                        checked={values.consentText}
+                        onChange={handleChange}
                       />
                     </Form.Group>
                     <div className="policyFormError d-flex justify-content-end">
@@ -249,7 +264,13 @@ const PolicyForm = () => {
                       className="mb-3 policy-check"
                       controlId="formBasicCheckbox"
                     >
-                      <Form.Check type="checkbox" label="KVKK" name="kvkk" />
+                      <Form.Check
+                        checked={values.kvkk}
+                        type="checkbox"
+                        label="KVKK"
+                        name="kvkk"
+                        onChange={handleChange}
+                      />
                     </Form.Group>
                     <div className="policyFormError d-flex justify-content-end">
                       {" "}
@@ -260,13 +281,16 @@ const PolicyForm = () => {
                     md={12}
                     className="d-flex align-items-center justify-content-center policyFormButton mb-5"
                   >
+                    {(isValid && dirty) &&
                     <Button
-                      // onClick={formButton}
-                      className="login-save-button mb- mt-5"
-                      variant="info"
+                      type="submit"
+                      className=" mb- mt-5"
+                      variant="danger"
+                      // disabled={!(isValid && dirty)}
                     >
                       Kaydet
                     </Button>
+                    }
                   </Col>
                 </Form>
               </Col>
@@ -286,24 +310,24 @@ const PolicyForm = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>hivda</td>
-                      <td>Kaymak</td>
-                      <td>0123456789</td>
-                      <td>miray@gmail.com</td>
-                      <td>x xxx xxx xx xx</td>
-                      <td>1 231 25645 25</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>eda ♥</td>
-                      <td>aydın</td>
-                      <td>0123456789</td>
-                      <td>eda@gmail.com</td>
-                      <td>x xxx xxx xx xx</td>
-                      <td>1 231 25645 25</td>
-                    </tr>
+                    {events.length > 0 &&
+                      events.map((event,x) => {
+                        return (
+                          <tr key={x}>
+                            <td>{x+1}</td>
+                            <td>{event.firstName}</td>
+                            <td>{event.lastName}</td>
+                            <td>{event.TcNo}</td>
+                            <td>{event.mail}</td>
+                            <td>{event.phoneNumber}</td>
+                            <td>{event.cardNo}</td>
+                            {/* 
+                            <td className="editIcon">
+                              <TableModaler id={event.id} />
+                            </td> */}
+                          </tr>
+                        );
+                      })}
                   </tbody>
                 </Table>
               </Col>

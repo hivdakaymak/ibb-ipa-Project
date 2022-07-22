@@ -169,7 +169,7 @@ const Home = () => {
           EtkinKalKontenjan="Kalan 1"
         />
 
-        <Pagination className="pagination d-flex align-items-center justify-content-center mb-5">
+        {/* <Pagination className="pagination d-flex align-items-center justify-content-center mb-5">
           <div className="beforeLink">
             <a href="#">
               <Link to={"/"}>Önceki </Link>
@@ -189,7 +189,7 @@ const Home = () => {
               <Link to={"/"}>Sonraki </Link>
             </a>
           </div>
-        </Pagination>
+        </Pagination> */}
       </Row>
     </Container>
   );

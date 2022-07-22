@@ -20,11 +20,6 @@ function event(state, action) {
         return state;
       }
       return Object.assign({}, state, { title: action.payload.title });
-    // yeni gelecek olan değer için obje oluşturulur
-    // var olanı kopyalanır
-    // kullanıcıdan gelen değer alınır
-
-    // Home !
     case "ADD_EVENT_HOME":
       return {
         id: id,
@@ -39,7 +34,7 @@ function event(state, action) {
       return state.filter((event) => {
         return event.id !== action.payload.id;
       });
-      
+
     default:
       return state;
   }
@@ -47,6 +42,7 @@ function event(state, action) {
 
 // Bize actiondan dönen payload dönüyor. ekleme işlemi yapıyor
 function eventReducer(state = intialState, action) {
+  console.log(action, "formmmm")
   switch (action.type) {
     case "ADD_EVENT":
       id = id + 1;
@@ -73,6 +69,16 @@ function eventReducer(state = intialState, action) {
 
     case "DELETE_USER":
       return event(state, action);
+
+      case "ADD_EVENT_POLICY_FORM":
+        return [
+          ...state,
+          action.payload
+        ]
+
+    case "POLICY_FORM_ADD_EVENT":
+      id = id + 1;
+      return [...state, event(null, action)];
   }
 }
 
