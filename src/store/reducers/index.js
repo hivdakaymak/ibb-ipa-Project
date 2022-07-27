@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import eventReducer from './event';
+// import { combineReducers } from 'redux';
+// import eventReducer from './event';
 
-const rootReducer = combineReducers({
-   eventList: eventReducer,
-});
+// const rootReducer = combineReducers({
+//    eventList: eventReducer,
+// });
 
-export default rootReducer;
+// export default rootReducer;
 
-// Reducerları tanımlayıp combine ediyoruz 
+// // Reducerları tanımlayıp combine ediyoruz 
