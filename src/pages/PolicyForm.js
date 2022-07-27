@@ -80,7 +80,7 @@ const PolicyForm = () => {
           handleBlur,
           isValid,
           dirty,
-          setFieldValue
+          setFieldValue,
         }) => (
           <Container>
             <Row>
@@ -101,8 +101,6 @@ const PolicyForm = () => {
                       <Form.Label className=""> Ad</Form.Label>
                     </Col>
                     <Form.Control
-                      onFocus={console.log("focuslandım")}
-                      onBlur={console.log("ayrıldım")}
                       name="firstName"
                       type="text"
                       values={values.firstName}
@@ -281,16 +279,16 @@ const PolicyForm = () => {
                     md={12}
                     className="d-flex align-items-center justify-content-center policyFormButton mb-5"
                   >
-                    {(isValid && dirty) &&
-                    <Button
-                      type="submit"
-                      className=" mb- mt-5"
-                      variant="danger"
-                      // disabled={!(isValid && dirty)}
-                    >
-                      Kaydet
-                    </Button>
-                    }
+                    {isValid && dirty && (
+                      <Button
+                        type="submit"
+                        className=" mb- mt-5"
+                        variant="danger"
+                        // disabled={!(isValid && dirty)}
+                      >
+                        Kaydet
+                      </Button>
+                    )}
                   </Col>
                 </Form>
               </Col>
@@ -311,10 +309,10 @@ const PolicyForm = () => {
                   </thead>
                   <tbody>
                     {events.length > 0 &&
-                      events.map((event,x) => {
+                      events.map((event, x) => {
                         return (
                           <tr key={x}>
-                            <td>{x+1}</td>
+                            <td>{x + 1}</td>
                             <td>{event.firstName}</td>
                             <td>{event.lastName}</td>
                             <td>{event.TcNo}</td>
