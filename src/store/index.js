@@ -1,12 +1,12 @@
-import { createStore } from "redux";
-import reducers from "./reducers/";
+// import { createStore } from "redux";
+// import reducers from "./reducers/";
 
-// reducerlar çağırılıyor 
+// // reducerlar çağırılıyor 
 
-const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-export default store;
+// const store = createStore(
+//   reducers,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// );
+// export default store;
 
-//  store yaratıp reducer bağlıyoruz
+// //  store yaratıp reducer bağlıyoruz

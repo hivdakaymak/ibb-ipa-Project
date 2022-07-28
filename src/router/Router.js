@@ -9,8 +9,8 @@ import Events from "../pages/Events";
 import PolicyUserList from "../pages/PolicyUserList";
 import Verification from "../pages/Verification";
 import { Provider } from 'react-redux'
-import store from '../store/'
 import LoginPage from "../pages/LoginPage";
+import store from "../redux/store";
 
 
 const Routers = () => {

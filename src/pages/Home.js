@@ -14,8 +14,8 @@ import Menu from "../compenents/Navbar";
 import Swaler from "sweetalert2";
 import TablePage from "../compenents/Table";
 import { useState } from "react";
-import { addEventHome } from "../store/actions/event";
 import { useDispatch, useSelector } from "react-redux";
+import { addEvent } from "../redux/EventSlice";
 
 const homeSave = () => {
   Swaler.fire({
@@ -33,6 +33,7 @@ const Home = () => {
   const [kont, setKont] = useState("");
   const [date, setDate] = useState("");
   const dispatch = useDispatch();
+  const state = useSelector(state => state.newEventReducer)
   const submitEvent = (e) => {
     e.preventDefault();
 
@@ -45,7 +46,7 @@ const Home = () => {
         kont: kont,
       };
 
-      dispatch(addEventHome(newEvent));
+      dispatch(addEvent(newEvent));
       setName("");
       setDesc("");
       setPlace("");
@@ -53,9 +54,11 @@ const Home = () => {
       setKont("");
     }
   };
+  
   return (
     <Container>
       <Row>
+        {JSON.stringify(state, null,2)}
         <Menu title="Etkinlik Tanımlama Ekranı" />
         <Col md={6} className="mb-4">
           <Form style={{ marginRight: "60px" }}>
@@ -149,7 +152,7 @@ const Home = () => {
           Kaydet
         </Button>
 
-        <TablePage
+        {/* <TablePage
           EtNo="Etkinllik No"
           EtAdi="Etkinlik Adı"
           EtAciklamasi="Etkinlik Açıklaması"
@@ -167,7 +170,7 @@ const Home = () => {
           EtkinKontenjan="Kontenjan 1"
           EtkinBasvuru="Başvuru 1"
           EtkinKalKontenjan="Kalan 1"
-        />
+        /> */}
 
         {/* <Pagination className="pagination d-flex align-items-center justify-content-center mb-5">
           <div className="beforeLink">

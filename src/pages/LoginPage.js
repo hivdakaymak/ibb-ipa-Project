@@ -17,7 +17,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(localStorage.UsersData);
+  // console.log(localStorage.UsersData);
 
   return (
     <Container>
@@ -36,7 +36,7 @@ const LoginPage = () => {
                 navigate("/events-var");
               }
             }
-            console.log(UsersData.users);
+            // console.log(UsersData.users);
           }}
         >
           {({ handleSubmit, handleChange, values, errors, isSubmitting }) => (

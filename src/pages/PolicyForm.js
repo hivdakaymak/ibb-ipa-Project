@@ -39,7 +39,7 @@ const policyformSchema = Yup.object({
 });
 
 const submitForm = (values) => {
-  console.log(values);
+  // console.log(values);
 };
 
 const PolicyForm = () => {

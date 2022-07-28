@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Action } from "history";
 
 const formSlices = createSlice({
   name: "forms",
   initialState: [],
   reducers: {
     addEvent: (state, action) => {
-      const addNewEvent = {
-        id: id,
-        title: Action.payload.name,
-      };
+      console.log(action)
+
+      state.push(action.payload)
     },
 
     deleteEvent: (state, action) => {
@@ -25,7 +23,7 @@ const formSlices = createSlice({
 
     addEventHome: (state, action) => {
       const addNewEventHome = {
-        id: id,
+        id: 1,
         name: action.payload.name,
         desc: action.payload.desc,
         place: action.payload.place,
@@ -42,5 +40,5 @@ const formSlices = createSlice({
   },
 });
 
-export const { addEvent, deleteEvent } = formSlices.action;
-export default formSlices.reducers;
+export const { addEvent, deleteEvent } = formSlices.actions;
+export default formSlices.reducer;
